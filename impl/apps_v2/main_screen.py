@@ -43,7 +43,8 @@ class MainScreen:
         self.bgs = {'sakura' : Image.open('apps_v2/res/main_screen/sakura-bg.png').convert("RGB"),
                     'cloud' : Image.open('apps_v2/res/main_screen/cloud-bg-clear.png').convert("RGBA"),
                     'forest' : Image.open('apps_v2/res/main_screen/forest-bg.png').convert("RGB")}
-        self.theme_list = [self.generateSakura, self.generateCloud, self.generateForest]
+        #self.theme_list = [self.generateSakura, self.generateCloud, self.generateForest]
+        self.theme_list = [self.generateSakura,  self.generateForest]
 
         self.currentIdx = 0
         self.selectMode = False
@@ -123,8 +124,8 @@ class MainScreen:
                 draw.point((41,6), fill=white)
         
         #notifications
-        noti_list = self.modules['notifications'].getNotificationList()
-        counts = countList(noti_list)
+        #noti_list = self.modules['notifications'].getNotificationList()
+        counts = countList()
 
         if (counts['Discord'] > 0):
             draw.rectangle((37,26,38,27), fill=discordColor)
@@ -135,7 +136,7 @@ class MainScreen:
         if (counts['Messenger'] > 0):
             draw.rectangle((37,29,38,30), fill=messengerColor)
         
-        self.old_noti_list = noti_list
+        #self.old_noti_list = noti_list
         
         return frame
     
@@ -156,7 +157,7 @@ class MainScreen:
         threading.Thread(target=generateNotiFramesAsync, 
             args=(self.queued_frames, noti_list, self.old_noti_list.copy(), self.font, self.canvas_width, self.canvas_height)).start()
         
-        self.old_noti_list = noti_list.copy()
+        #self.old_noti_list = noti_list.copy()
 
         if len(self.queued_frames) == 0:
             frame = Image.new('RGBA',(self.canvas_width, self.canvas_height),washed_out_navy)
@@ -193,11 +194,11 @@ def padToTwoDigit(num):
     else:
         return str(num)
 
-def countList(noti_list):
+def countList():
     counts = {'Discord':0, 'SMS':0, 'Snapchat':0, 'Messenger':0}
-    for noti in noti_list:
-        if noti.application in counts.keys():
-            counts[noti.application] = counts[noti.application] + 1
+    # for noti in noti_list:
+    #     if noti.application in counts.keys():
+    #         counts[noti.application] = counts[noti.application] + 1
     return counts
 
 def generateNotiFramesAsync(queue, noti_list, old_noti_list, font, canvas_width, canvas_height):
