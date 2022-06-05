@@ -44,7 +44,7 @@ class MainScreen:
                     'cloud' : Image.open('apps_v2/res/main_screen/cloud-bg-clear.png').convert("RGBA"),
                     'forest' : Image.open('apps_v2/res/main_screen/forest-bg.png').convert("RGB")}
         #self.theme_list = [self.generateSakura, self.generateCloud, self.generateForest]
-        self.theme_list = [self.generateForest,self.generateSakura, ]
+        self.theme_list = [self.generateSakura,  self.generateForest]
 
         self.currentIdx = 0
         self.selectMode = False
