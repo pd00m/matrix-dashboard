@@ -125,7 +125,7 @@ class MainScreen:
         
         #notifications
         #noti_list = self.modules['notifications'].getNotificationList()
-        counts = 0 #countList(noti_list)
+        counts = countList()
 
         if (counts['Discord'] > 0):
             draw.rectangle((37,26,38,27), fill=discordColor)
@@ -194,11 +194,11 @@ def padToTwoDigit(num):
     else:
         return str(num)
 
-def countList(noti_list):
+def countList():
     counts = {'Discord':0, 'SMS':0, 'Snapchat':0, 'Messenger':0}
-    for noti in noti_list:
-        if noti.application in counts.keys():
-            counts[noti.application] = counts[noti.application] + 1
+    # for noti in noti_list:
+    #     if noti.application in counts.keys():
+    #         counts[noti.application] = counts[noti.application] + 1
     return counts
 
 def generateNotiFramesAsync(queue, noti_list, old_noti_list, font, canvas_width, canvas_height):
