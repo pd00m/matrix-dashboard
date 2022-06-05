@@ -80,7 +80,7 @@ def main():
                     'notifications' : notification_module.NotificationModule(config),
                     'spotify' : spotify_module.SpotifyModule(config)
                 }
-
+    # Removing some of the modules to get the intial set up tested 
     app_list = [main_screen.MainScreen(config, modules, callbacks),
             #    notion_v2.NotionScreen(config, modules, callbacks),
                 weather.WeatherScreen(config, modules, callbacks),
