@@ -95,9 +95,9 @@ class MainScreen:
         dayOfWeek = currentTime.weekday() + 1
         hours = currentTime.hour
         if not self.use_24_hour:
-            hours = hours % 12
+            hours = hours % 24
             if (hours == 0):
-                hours += 12 
+                hours += 24 
         minutes = currentTime.minute
 
         frame = self.bgs['sakura'].copy()
@@ -146,9 +146,9 @@ class MainScreen:
         day = currentTime.day
         hours = currentTime.hour
         if not self.use_24_hour:
-            hours = hours % 12
+            hours = hours % 24
             if (hours == 0):
-                hours += 12 
+                hours += 24 
         minutes = currentTime.minute
         seconds = currentTime.second
 
