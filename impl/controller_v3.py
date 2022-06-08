@@ -18,7 +18,7 @@ tilt = 19
 def main():
     brightness = 100
     displayOn = True
-
+    print("starting the application")
     config = configparser.ConfigParser()
     parsed_configs = config.read('../config.ini')
     if len(parsed_configs) == 0:
