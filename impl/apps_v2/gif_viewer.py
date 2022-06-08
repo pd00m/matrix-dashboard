@@ -12,7 +12,7 @@ class GifScreen:
         self.canvas_width = config.getint('System', 'canvas_width', fallback=64)
         self.canvas_height = config.getint('System', 'canvas_height', fallback=32)
 
-        location = config.get('Gif Viewer', 'location', fallback=None)
+        location = config.get('Gif Viewer', 'location', fallback='../res/gif/horizontal')
         if location is None:
             print("[Gif Viewer] Location of gifs is not specified in config")
             self.animations = []
