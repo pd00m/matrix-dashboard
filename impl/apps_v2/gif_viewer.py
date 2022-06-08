@@ -13,7 +13,7 @@ class GifScreen:
         self.canvas_height = config.getint('System', 'canvas_height', fallback=32)
 
         dirname = os.path.dirname(__file__)
-        filepath = os.path.join(dirname, '../res/gif/horizontal')
+        filepath = os.path.join(dirname, 'res/gif/horizontal')
         location = config.get('Gif Viewer', 'location', fallback=filepath)
         if location is None:
             print("[Gif Viewer] Location of gifs is not specified in config")
