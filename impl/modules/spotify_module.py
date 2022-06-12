@@ -38,7 +38,7 @@ class SpotifyModule:
         return self.invalid
 
     def getCurrentPlayback(self):
-        print("[Spotify Module] attempting to getCurrentPlayback")
+        print("[Spotify Module] attempting to getCurrentPlayback", self.invalid)
         if self.invalid:
             return None
 
