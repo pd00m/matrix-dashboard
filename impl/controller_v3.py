@@ -191,15 +191,18 @@ def encButtonFunc(enc_button, inputStatusDict):
         return
 
 def rotate_clockwise(encoder, encoderQueue):
+    print("rotate_clockwise detected")
     encoderQueue.put(1)
     encoder.value = 0
 
 def rotate_counter_clockwise(encoder, encoderQueue):
+    print("rotate_counter_clockwise detected")
     encoderQueue.put(-1)
     encoder.value = 0
 
 def tilt_callback(tilt_switch, isHorizontalDict):
     startTime = time.time()
+    print("tilt_callback detected")
     while (time.time() - startTime < 0.25):
         pass
     isHorizontalDict['value'] = tilt_switch.is_pressed
