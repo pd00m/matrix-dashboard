@@ -18,7 +18,7 @@ tilt = 19
 def main():
     brightness = 100
     displayOn = True
-
+    print("starting the application")
     config = configparser.ConfigParser()
     parsed_configs = config.read('../config.ini')
     if len(parsed_configs) == 0:
@@ -148,6 +148,11 @@ def main():
         
         #matrix.brightness = 100
         matrix.SetImage(frame)
+
+        #test to see if the background will scoll without the button 
+        time.sleep(15)
+        switch_next_app()
+
         time.sleep(0.05)
 
 def encButtonFunc(enc_button, inputStatusDict):
@@ -186,15 +191,18 @@ def encButtonFunc(enc_button, inputStatusDict):
         return
 
 def rotate_clockwise(encoder, encoderQueue):
+    print("rotate_clockwise detected")
     encoderQueue.put(1)
     encoder.value = 0
 
 def rotate_counter_clockwise(encoder, encoderQueue):
+    print("rotate_counter_clockwise detected")
     encoderQueue.put(-1)
     encoder.value = 0
 
 def tilt_callback(tilt_switch, isHorizontalDict):
     startTime = time.time()
+    print("tilt_callback detected")
     while (time.time() - startTime < 0.25):
         pass
     isHorizontalDict['value'] = tilt_switch.is_pressed
