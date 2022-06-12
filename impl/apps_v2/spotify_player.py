@@ -110,6 +110,7 @@ class SpotifyScreen:
 
             return frame
         else:
+            print("[Spotify player] response was null")
             #not active
             frame = Image.new("RGB", (self.canvas_width, self.canvas_height), (0,0,0))
             draw = ImageDraw.Draw(frame)

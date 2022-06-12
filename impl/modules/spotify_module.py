@@ -19,11 +19,13 @@ class SpotifyModule:
 
                     scope = "user-read-currently-playing, user-read-playback-state, user-modify-playback-state"
                     self.auth_manager = spotipy.SpotifyOAuth(scope=scope)
+                    print("Authenticated for spotipy", self.auth_manager)
                     print(self.auth_manager.get_authorize_url())
+                    
                     self.sp = spotipy.Spotify(auth_manager=self.auth_manager, requests_timeout=10)
                     self.isPlaying = False
                 except Exception as e:
-                    print(e)
+                    print("[Spotify Module] error trying to authenticate",e)
                     self.invalid = True
             else:
                 print("[Spotify Module] Empty Spotify client id or secret")
@@ -55,8 +57,10 @@ class SpotifyModule:
                 self.isPlaying = track['is_playing']
                 return (artist, title, art_url, self.isPlaying, track["progress_ms"], track["item"]["duration_ms"])
             else:
+                print("[Spotify Module] Nothing in get user track")
                 return None
         except Exception as e:
+            print("[Spotify Module] Exception caught in  current_user_playing_track")
             print(e)
             return None
     
