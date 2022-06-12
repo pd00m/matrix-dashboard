@@ -24,7 +24,7 @@ class SpotifyModule:
                     self.sp = spotipy.Spotify(auth_manager=self.auth_manager, requests_timeout=10)
                     self.isPlaying = False
                     urn = 'spotify:artist:3jOstUTkEu2JkjvRdBA5Gu'
-                    print("[Spotify Module] test: ", self.sp.artist(urn))
+                    print("[Spotify Module] test: ", self.sp.current_user_playing_track()['item']['artists'][0]['name'])
                 except Exception as e:
                     print("[Spotify Module] error trying to authenticate",e)
                     self.invalid = True
