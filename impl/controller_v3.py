@@ -85,9 +85,9 @@ def main():
             #    notion_v2.NotionScreen(config, modules, callbacks),
                 weather.WeatherScreen(config, modules, callbacks),
             #    subcount.SubcountScreen(config, modules, callbacks),
-                gif_viewer.GifScreen(config, modules, callbacks),
+                gif_viewer.GifScreen(config, modules, callbacks)]
             #    life.GameOfLifeScreen(config, modules, callbacks),
-                spotify_player.SpotifyScreen(config, modules, callbacks)]
+            #    spotify_player.SpotifyScreen(config, modules, callbacks)]
 
     currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
     parentdir = os.path.dirname(currentdir)
