@@ -43,14 +43,17 @@ class SpotifyModule:
             return None
 
         try:
-            print("[Spotify Module] Attempted to get track playing)")
+            print("[Spotify Module] Attempted to get track playing")
             track = self.sp.current_user_playing_track()
+            print("[Spotify Module] Track", track)
             if (track is not None):
                 if (track['item'] is None):
                     artist = None
                     title = None
                     art_url = None
+                    print("[Spotify Module] no track detected")
                 else:
+                    print("[Spotify Module] track detected")
                     artist = track['item']['artists'][0]['name']
                     if len(track['item']['artists']) >= 2:
                         artist = artist + ", " + track['item']['artists'][1]['name']
