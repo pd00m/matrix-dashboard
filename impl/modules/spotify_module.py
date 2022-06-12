@@ -43,6 +43,7 @@ class SpotifyModule:
             return None
 
         try:
+            print("[Spotify Module] Attempted to get track playing)")
             track = self.sp.current_user_playing_track()
             if (track is not None):
                 if (track['item'] is None):
@@ -58,6 +59,7 @@ class SpotifyModule:
                 self.isPlaying = track['is_playing']
                 return (artist, title, art_url, self.isPlaying, track["progress_ms"], track["item"]["duration_ms"])
             else:
+                print("[Spotify Module] Nothing in get user track")
                 return None
         except Exception as e:
             print(e)
