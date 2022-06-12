@@ -22,7 +22,6 @@ class SpotifyModule:
                     print("Authenticated for spotipy", self.auth_manager)
                     print(self.auth_manager.get_authorize_url())
                     self.sp = spotipy.Spotify(auth_manager=self.auth_manager, requests_timeout=10)
-                    print(self.sp)
                     self.isPlaying = False
                 except Exception as e:
                     print("[Spotify Module] error trying to authenticate",e)
@@ -38,6 +37,7 @@ class SpotifyModule:
         return self.invalid
 
     def getCurrentPlayback(self):
+        print("[Spotify Module] attempting to getCurrentPlayback")
         if self.invalid:
             return None
 
