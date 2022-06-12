@@ -65,6 +65,7 @@ class SpotifyModule:
                 print("[Spotify Module] Nothing in get user track")
                 return None
         except Exception as e:
+            print("[Spotify Module] Exception caught in  current_user_playing_track")
             print(e)
             return None
     
