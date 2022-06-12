@@ -38,7 +38,6 @@ class SpotifyModule:
         return self.invalid
 
     def getCurrentPlayback(self):
-        print("[Spotify Module] attempting to getCurrentPlayback", self.invalid)
         if self.invalid:
             return None
 
@@ -49,9 +48,7 @@ class SpotifyModule:
                     artist = None
                     title = None
                     art_url = None
-                    print("[Spotify Module] no track detected")
                 else:
-                    print("[Spotify Module] track detected")
                     artist = track['item']['artists'][0]['name']
                     if len(track['item']['artists']) >= 2:
                         artist = artist + ", " + track['item']['artists'][1]['name']
