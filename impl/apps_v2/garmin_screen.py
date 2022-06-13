@@ -16,6 +16,7 @@ class GarminScreen:
         self.canvas_height = config.getint('System', 'canvas_height', fallback=32)
 
         self.text_color = literal_eval(config.get('Garmin Screen', 'text_color',fallback="(255,255,255)"))
+        self.control_mode = False
 
 
     def generate(self, isHorizontal, inputStatus):    
