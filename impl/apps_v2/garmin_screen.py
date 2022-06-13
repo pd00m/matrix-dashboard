@@ -5,7 +5,7 @@ from InputStatus import InputStatusEnum
 from ast import literal_eval
 
 class GarminScreen: 
-    def __init__(self, modules, config, default_actions):
+    def __init__(self, config, modules, default_actions):
         print("Garmin Screen Test")
         self.modules = modules
         self.default_actions = default_actions
