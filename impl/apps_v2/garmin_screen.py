@@ -4,6 +4,8 @@ from PIL import Image, ImageFont, ImageDraw
 from InputStatus import InputStatusEnum
 from ast import literal_eval
 
+garmin_blue = (0,77,179)
+
 class GarminScreen: 
     def __init__(self, config, modules, default_actions):
         print("Garmin Screen Test")
@@ -36,4 +38,4 @@ class GarminScreen:
         
         frame = Image.new("RGB", (self.canvas_width, self.canvas_height), (0,0,0))
         draw = ImageDraw.Draw(frame)
-        draw.text(0,0,"Garmin screen is here")
+        draw.text((3, 6), "garmin is here", garmin_blue, font=self.font)
