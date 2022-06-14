@@ -73,7 +73,7 @@ def convertDuration(seconds):
     hours = math.floor(seconds / 3600)
     minutes = math.floor((seconds / 60) % 60)
     seconds = (seconds % 60)
-    duration_text = (str(hours) if str(hours + ":") > 0 else "") +  str(minutes) + ":" + str(padToTwoDigit(seconds))
+    duration_text = (str(hours + ":")  if hours > 0 else "") +  str(minutes) + ":" + str(padToTwoDigit(seconds))
     return duration_text
 
 def convertPace(speed): 
