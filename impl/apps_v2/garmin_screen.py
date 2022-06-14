@@ -73,4 +73,4 @@ def convertPace(speed):
     p = (60 / (speed / 0.44704));
     minutes_pace = math.floor(p);
     seconds_pace = p - minutes_pace;
-    return str(minutes_pace + ":" + seconds_pace)
+    return str(minutes_pace) + ":" + str(seconds_pace)
