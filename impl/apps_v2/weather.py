@@ -18,8 +18,8 @@ class WeatherScreen:
         self.icons = generateIconMap()
 
         self.text_color = literal_eval(config.get('Weather Screen', 'text_color', fallback="(255,255,255)"))
-        self.low_color = literal_eval(config.get('Weather Screen', 'low_color', fallback="(255,255,255)"))
-        self.high_color = literal_eval(config.get('Weather Screen', 'high_color', fallback="(255,255,255)"))
+        self.low_color = literal_eval(config.get('Weather Screen', 'low_color', fallback="(50,145,168)"))
+        self.high_color = literal_eval(config.get('Weather Screen', 'high_color', fallback="(168,66,50)"))
 
     def generate(self, isHorizontal, inputStatus):
         if (inputStatus is InputStatusEnum.SINGLE_PRESS):

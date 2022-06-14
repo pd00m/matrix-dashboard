@@ -23,6 +23,8 @@ class GarminScreen:
         self.text_color = literal_eval(config.get('Garmin Screen', 'text_color',fallback="(255,255,255)"))
         self.control_mode = False
 
+        self.bgs = {'road' : Image.open('apps_v2/res/garmin/road.png').convert("RGB")}
+
 
     def generate(self, isHorizontal, inputStatus):    
         if (inputStatus is InputStatusEnum.LONG_PRESS):
@@ -39,7 +41,8 @@ class GarminScreen:
             elif (inputStatus is InputStatusEnum.ENCODER_DECREASE):
                 self.default_actions['switch_prev_app']()
         
-        frame = Image.new("RGB", (self.canvas_width, self.canvas_height), (0,0,0))
+        #frame = Image.new("RGB", (self.canvas_width, self.canvas_height), (0,0,0))
+        frame = self.bgs['road'].copy()
         draw = ImageDraw.Draw(frame)
 
         response = garmin_module.getLastActivity()
