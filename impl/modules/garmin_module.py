@@ -21,7 +21,6 @@ class GarminModule:
             self.api = Garmin(client_id, client_password)
             self.api.login()
 
-            print(self.api.get_last_activity())
         except Exception as e:
             print("[Garmin Module] error trying to authenticate",e)
             self.invalid = True
