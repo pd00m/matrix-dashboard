@@ -15,10 +15,18 @@ class GarminModule:
         print("Garmin Module has been initiated")
 
         ## Initialize Garmin api with your credentials
-        
-        client_id = config['Garmin']['email']
-        client_password = config['Garmin']['password']
-        api = Garmin(client_id, client_password)
-        api.login()
+        try:
+            client_id = config['Garmin']['email']
+            client_password = config['Garmin']['password']
+            api = Garmin(client_id, client_password)
+            api.login()
 
-        print(api.get_full_name())
+            
+            print(api.get_last_activity())
+        except Exception as e:
+            print("[Garmin Module] error trying to authenticate",e)
+            self.invalid = True
+
+    def getLastActivity(self):
+        last_activity = self.api.get_last_activity()
+        return (last_activity['distance'])

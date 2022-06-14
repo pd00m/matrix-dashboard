@@ -38,6 +38,10 @@ class GarminScreen:
         
         frame = Image.new("RGB", (self.canvas_width, self.canvas_height), (0,0,0))
         draw = ImageDraw.Draw(frame)
-        draw.text((3, 6), "garmin is here", garmin_blue, font=self.font)
+
+        response = garmin_module.getLastActivity()
+        if response is not None:
+            (distance) = response
+        draw.text((0, 0), distance, garmin_blue, font=self.font)
 
         return frame
