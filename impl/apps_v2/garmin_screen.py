@@ -42,6 +42,8 @@ class GarminScreen:
         response = garmin_module.getLastActivity()
         if response is not None:
             (distance) = response
-        draw.text((0, 0), distance, garmin_blue, font=self.font)
+            print("distance from screen: ", distance)
+            draw.text((0, 0), distance, garmin_blue, font=self.font)
+        
 
         return frame
