@@ -45,21 +45,21 @@ class GarminScreen:
         response = garmin_module.getLastActivity()
         if response is not None:
             (distance, duration, speed, hr, cadence) = response
-            draw.text((0, 0), convertToMiles(distance) + "miles", white, font=self.font)
-            draw.text((30, 0), "DIST", medium_blue, font=self.font)
+            draw.text((0, 0), convertToMiles(distance), white, font=self.font)
+            draw.text((49, 0), "MILES", medium_blue, font=self.font)
 
-            draw.text((0, 6), roundValues(hr, 0), white, font=self.font)
-            draw.text((36, 6), "HR", medium_blue, font=self.font)
+            draw.text((0, 6), str(int(hr)), white, font=self.font)
+            draw.text((57, 6), "HR", medium_blue, font=self.font)
 
             draw.text((0, 12), convertDuration(duration), white, font=self.font)
-            draw.text((34, 12), "DUR", medium_blue, font=self.font)
+            draw.text((53, 12), "DUR", medium_blue, font=self.font)
 
             draw.text((0, 18), convertPace(speed), white, font=self.font)
             draw.text((17, 18), "/mile",light_blue, font=self.font)
-            draw.text((34, 18), "PACE", medium_blue, font=self.font)
+            draw.text((49, 18), "PACE", medium_blue, font=self.font)
 
-            draw.text((0, 24), roundValues(cadence, 0), white, font=self.font)
-            draw.text((24, 24), "CADENCE", medium_blue, font=self.font)
+            draw.text((0, 24), str(int(cadence)), white, font=self.font)
+            draw.text((37, 24), "CADENCE", medium_blue, font=self.font)
         
         return frame
 
