@@ -44,10 +44,12 @@ class GarminScreen:
         response = garmin_module.getLastActivity()
         if response is not None:
             (distance) = response
-            print("distance from screen: ", roundValues(distance,2))
-            draw.text((0, 0), roundValues(distance,2), garmin_blue, font=self.font)
+            draw.text((0, 0), convertToMiles(distance), garmin_blue, font=self.font)
         
         return frame
 
 def roundValues(num, digits):
     return str(round(num, digits))
+
+def convertToMiles(meters):
+    return str(roundValues(meters*0.000621371192, 2))
