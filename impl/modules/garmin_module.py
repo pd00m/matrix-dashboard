@@ -1,6 +1,7 @@
 
 import time
 import datetime
+from math import ceil
 
 from garminconnect import (
     Garmin,
@@ -29,4 +30,4 @@ class GarminModule:
     def getLastActivity(self):
         last_activity = self.api.get_last_activity()
         print("distance: ", last_activity['distance'])
-        return (last_activity['distance'])
+        return (ceil(last_activity['distance'] * 100 / 100.0))
