@@ -76,7 +76,8 @@ def convertPace(speed):
     return str(minutes_pace) + ":" + str(padToTwoDigit(round(seconds_pace* 60,0))) + "/mile"
 
 def padToTwoDigit(num):
+    num = int(num)
     if num < 10:
-        return "0" + str(round(num,0))
+        return "0" + str(num)
     else:
-        return str(round(num,0))
+        return str(num)
