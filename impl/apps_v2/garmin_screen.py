@@ -47,13 +47,13 @@ class GarminScreen:
             (distance, duration, speed, hr, cadence) = response
             draw.text((0, 0), convertToMiles(distance), medium_blue, font=self.font)
 
-            draw.text((6, 0), roundValues(hr, 1), medium_blue, font=self.font)
+            draw.text((0, 6), roundValues(hr, 1), medium_blue, font=self.font)
 
-            draw.text((12, 0), convertDuration(duration), medium_blue, font=self.font)
+            draw.text((0, 12), convertDuration(duration), medium_blue, font=self.font)
 
-            draw.text((18, 0), convertPace(speed), medium_blue, font=self.font)
+            draw.text((0, 18), convertPace(speed), medium_blue, font=self.font)
 
-            draw.text((24, 0), roundValues(cadence, 2), medium_blue, font=self.font)
+            draw.text((0, 24), roundValues(cadence, 2), medium_blue, font=self.font)
         
         return frame
 
