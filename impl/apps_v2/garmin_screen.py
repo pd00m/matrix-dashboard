@@ -3,10 +3,11 @@ import time
 from PIL import Image, ImageFont, ImageDraw
 from InputStatus import InputStatusEnum
 from ast import literal_eval
-from math import ceil
+import math
 
 
-garmin_blue = (0,77,179)
+medium_blue = (0,77,179)
+white = (230,255,255)
 
 class GarminScreen: 
     def __init__(self, config, modules, default_actions):
@@ -43,8 +44,16 @@ class GarminScreen:
 
         response = garmin_module.getLastActivity()
         if response is not None:
-            (distance) = response
-            draw.text((0, 0), convertToMiles(distance), garmin_blue, font=self.font)
+            (distance, duration, speed, hr, cadence) = response
+            draw.text((0, 0), convertToMiles(distance), medium_blue, font=self.font)
+
+            draw.text((6, 0), roundValues(hr, 1), medium_blue, font=self.font)
+
+            draw.text((12, 0), convertDuration(duration), medium_blue, font=self.font)
+
+            draw.text((18, 0), convertPace(speed), medium_blue, font=self.font)
+
+            draw.text((24, 0), roundValues(cadence, 2), medium_blue, font=self.font)
         
         return frame
 
@@ -53,3 +62,15 @@ def roundValues(num, digits):
 
 def convertToMiles(meters):
     return str(roundValues(meters*0.000621371192, 2))
+
+def convertDuration(seconds):
+    hours = math.floor(seconds / 3600)
+    minutes = math.floor((seconds / 60) % 60)
+    seconds = (seconds % 60)
+    return str(hours) + ":" + str(minutes) + "." + str(seconds)
+
+def convertPace(speed): 
+    p = (60 / (speed / 0.44704));
+    minutes_pace = floor(p);
+    seconds_pace = p - minutes_pace;
+    return str(minutes_pace + ":" + seconds_pace)

@@ -28,4 +28,8 @@ class GarminModule:
 
     def getLastActivity(self):
         last_activity = self.api.get_last_activity()
-        return (last_activity['distance'])
+        return (last_activity['distance'], 
+            last_activity['duration'], 
+            last_activity['averageSpeed'], 
+            last_activity['averageHR'],
+            last_activity['averageRunningCadenceInStepsPerMinute'])
