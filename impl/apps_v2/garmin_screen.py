@@ -73,7 +73,7 @@ def convertPace(speed):
     p = (60 / (speed / 0.44704));
     minutes_pace = math.floor(p);
     seconds_pace = p - minutes_pace;
-    return str(minutes_pace) + ":" + str(round(padToTwoDigit(seconds_pace* 60,0))) + "/mile"
+    return str(minutes_pace) + ":" + str(padToTwoDigit(round(seconds_pace* 60,0))) + "/mile"
 
 def padToTwoDigit(num):
     if num < 10:
