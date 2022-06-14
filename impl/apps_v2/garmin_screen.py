@@ -67,10 +67,16 @@ def convertDuration(seconds):
     hours = math.floor(seconds / 3600)
     minutes = math.floor((seconds / 60) % 60)
     seconds = (seconds % 60)
-    return str(hours) + ":" + str(minutes) + "." + str(seconds)
+    return str(hours) + ":" + str(minutes) + "." + str(padToTwoDigit(seconds))
 
 def convertPace(speed): 
     p = (60 / (speed / 0.44704));
     minutes_pace = math.floor(p);
     seconds_pace = p - minutes_pace;
-    return str(minutes_pace) + ":" + str(seconds_pace)
+    return str(minutes_pace) + ":" + str(round(padToTwoDigit(seconds_pace* 60,0))) + "/mile"
+
+def padToTwoDigit(num):
+    if num < 10:
+        return "0" + str(round(num,0))
+    else:
+        return str(round(num,0))
