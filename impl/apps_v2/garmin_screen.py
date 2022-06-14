@@ -3,6 +3,8 @@ import time
 from PIL import Image, ImageFont, ImageDraw
 from InputStatus import InputStatusEnum
 from ast import literal_eval
+from math import ceil
+
 
 garmin_blue = (0,77,179)
 
@@ -42,8 +44,10 @@ class GarminScreen:
         response = garmin_module.getLastActivity()
         if response is not None:
             (distance) = response
-            print("distance from screen: ", distance)
-            draw.text((0, 0), distance, garmin_blue, font=self.font)
+            print("distance from screen: ", roundValues(distance,2))
+            draw.text((0, 0), roundValues(distance,2), garmin_blue, font=self.font)
         
-
         return frame
+
+def roundValues(num, digits):
+    return str(round(num, digits))
