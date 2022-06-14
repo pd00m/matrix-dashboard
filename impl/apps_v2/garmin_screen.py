@@ -7,11 +7,11 @@ import math
 
 
 medium_blue = (0,77,179)
+light_blue = (50,145,168)
 white = (230,255,255)
 
 class GarminScreen: 
     def __init__(self, config, modules, default_actions):
-        print("Garmin Screen Test")
         self.modules = modules
         self.default_actions = default_actions
 
@@ -45,15 +45,21 @@ class GarminScreen:
         response = garmin_module.getLastActivity()
         if response is not None:
             (distance, duration, speed, hr, cadence) = response
-            draw.text((0, 0), convertToMiles(distance), medium_blue, font=self.font)
+            draw.text((0, 0), convertToMiles(distance) + "miles", white, font=self.font)
+            draw.text((30, 0), "DIST", medium_blue, font=self.font)
 
-            draw.text((0, 6), roundValues(hr, 1), medium_blue, font=self.font)
+            draw.text((0, 6), roundValues(hr, 0), white, font=self.font)
+            draw.text((36, 6), "HR", medium_blue, font=self.font)
 
-            draw.text((0, 12), convertDuration(duration), medium_blue, font=self.font)
+            draw.text((0, 12), convertDuration(duration), white, font=self.font)
+            draw.text((34, 12), "DUR", medium_blue, font=self.font)
 
-            draw.text((0, 18), convertPace(speed), medium_blue, font=self.font)
+            draw.text((0, 18), convertPace(speed), white, font=self.font)
+            draw.text((17, 18), "/mile",light_blue, font=self.font)
+            draw.text((34, 18), "PACE", medium_blue, font=self.font)
 
-            draw.text((0, 24), roundValues(cadence, 2), medium_blue, font=self.font)
+            draw.text((0, 24), roundValues(cadence, 0), white, font=self.font)
+            draw.text((24, 24), "CADENCE", medium_blue, font=self.font)
         
         return frame
 
@@ -67,13 +73,14 @@ def convertDuration(seconds):
     hours = math.floor(seconds / 3600)
     minutes = math.floor((seconds / 60) % 60)
     seconds = (seconds % 60)
-    return str(hours) + ":" + str(minutes) + "." + str(padToTwoDigit(seconds))
+    duration_text = (str(hours) if str(hours + ":") > 0 else "") +  str(minutes) + ":" + str(padToTwoDigit(seconds))
+    return duration_text
 
 def convertPace(speed): 
     p = (60 / (speed / 0.44704));
     minutes_pace = math.floor(p);
     seconds_pace = p - minutes_pace;
-    return str(minutes_pace) + ":" + str(padToTwoDigit(round(seconds_pace* 60,0))) + "/mile"
+    return str(minutes_pace) + ":" + str(padToTwoDigit(round(seconds_pace* 60,0)))
 
 def padToTwoDigit(num):
     num = int(num)
