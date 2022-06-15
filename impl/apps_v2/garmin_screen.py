@@ -27,6 +27,11 @@ class GarminScreen:
 
         self.theme_list = [self.lastActivity]
 
+        self.currentIdx = 0
+        self.selectMode = False
+
+        self.queued_frames = []
+
 
     def generate(self, isHorizontal, inputStatus):    
         if (inputStatus is InputStatusEnum.LONG_PRESS):
