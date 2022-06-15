@@ -41,8 +41,9 @@ class GarminScreen:
             elif (inputStatus is InputStatusEnum.ENCODER_DECREASE):
                 self.default_actions['switch_prev_app']()
         
-        #frame = Image.new("RGB", (self.canvas_width, self.canvas_height), (0,0,0))
-        frame = self.bgs['road'].copy()
+        frame = Image.new("RGB", (self.canvas_width, self.canvas_height), (0,0,0))
+        #frame = self.bgs['road'].copy()
+        frame.paste(self.bgs['road'], (0,0), self.bgs['road'])
         draw = ImageDraw.Draw(frame)
 
         response = garmin_module.getLastActivity()
