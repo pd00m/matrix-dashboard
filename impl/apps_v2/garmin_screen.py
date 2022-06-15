@@ -107,9 +107,8 @@ class GarminScreen:
         draw.text((0, 2), "Test health screen", white, font=self.font)
 
         garmin_module = self.modules["garmin"]
-        today = datetime.date.today()
-        lastweek = today - datetime.timedelta(days=7)
-        print(garmin_module.get_sleep_data(today.isoformat()))
+        garmin_module.getSleedData()
+        return frame
 
 
 def roundValues(num, digits):
