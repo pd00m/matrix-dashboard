@@ -40,3 +40,6 @@ class GarminModule:
 
     def getSleedData(self):
         sleep_data = self.api.get_sleep_data(today.isoformat())
+        print("[Garmin Module] getSleedData called")
+        print(today)
+        print(sleep_data)
