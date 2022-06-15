@@ -43,3 +43,4 @@ class GarminModule:
         print("[Garmin Module] getSleedData called")
         print(today)
         print(sleep_data)
+        time.sleep(30)
