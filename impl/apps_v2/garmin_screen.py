@@ -25,11 +25,23 @@ class GarminScreen:
 
         self.bgs = {'road' : Image.open('apps_v2/res/garmin/road.png').convert("RGB")}
 
+        self.theme_list = [self.lastActivity]
+
 
     def generate(self, isHorizontal, inputStatus):    
         if (inputStatus is InputStatusEnum.LONG_PRESS):
             self.control_mode = not self.control_mode
-        garmin_module = self.modules['garmin']
+
+        if (inputStatus == InputStatusEnum.LONG_PRESS):
+            self.selectMode = not self.selectMode
+
+        if self.selectMode:
+            if (inputStatus is InputStatusEnum.ENCODER_INCREASE):
+                self.currentIdx += 1
+                self.queued_frames = []
+            elif (inputStatus is InputStatusEnum.ENCODER_DECREASE):
+                self.currentIdx -= 1
+                self.queued_frames = []
 
         if not self.control_mode:
             if (inputStatus is InputStatusEnum.SINGLE_PRESS):
@@ -40,11 +52,24 @@ class GarminScreen:
                 self.default_actions['switch_next_app']()
             elif (inputStatus is InputStatusEnum.ENCODER_DECREASE):
                 self.default_actions['switch_prev_app']()
+
+        frame = self.theme_list[self.currentIdx % len(self.theme_list)]()
+        
+        if (self.selectMode):
+            draw = ImageDraw.Draw(frame)
+            draw.rectangle((0,0,self.canvas_width-1,self.canvas_height-1), outline=white)
+        
+        return frame
+
+    def lastActivity(self):
+        
+        garmin_module = self.modules['garmin']
         
         frame = Image.new("RGB", (self.canvas_width, self.canvas_height), (0,0,0))
         #frame = self.bgs['road'].copy()
         frame.paste(self.bgs['road'], (0,0))
         draw = ImageDraw.Draw(frame)
+        garmin_module = self.modules['garmin']
 
         response = garmin_module.getLastActivity()
         if response is not None:
