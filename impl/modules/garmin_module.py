@@ -42,5 +42,6 @@ class GarminModule:
         sleep_data = self.api.get_sleep_data(today.isoformat())
         print("[Garmin Module] getSleedData called")
         print(today)
-        print(sleep_data)
+        print(sleep_data["dailySleepDTO"])
+        print("DEEP SLEEP " + sleep_data["dailySleepDTO"]["deepSleepSeconds"])
         time.sleep(30)
