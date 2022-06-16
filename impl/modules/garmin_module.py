@@ -45,11 +45,17 @@ class GarminModule:
         print(today)
         print(sleep_data["dailySleepDTO"])
         print("DEEP SLEEP " + str(sleep_data["dailySleepDTO"]["deepSleepSeconds"]))
-        time.sleep(30)
+        time.sleep(10)
+        sleep = sleep_data["dailySleepDTO"]
         return (
-            sleep_data["dailySleepDTO"]["unmeasurableSleepSeconds"],
-            sleep_data["dailySleepDTO"]["deepSleepSeconds"],
-            sleep_data["dailySleepDTO"]["lightSleepSeconds"],
-            sleep_data["dailySleepDTO"]["remSleepSeconds"],
-            sleep_data["dailySleepDTO"]["test"],
+            get_attribute(sleep, "unmeasurableSleepSeconds", 0),
+            get_attribute(sleep, "deepSleepSeconds", 0),
+            get_attribute(sleep, "lightSleepSeconds", 0),
+            get_attribute(sleep, "remSleepSeconds", 0),
+            get_attribute(sleep, "test", None),  # averageRespirationValue
+            get_attribute(sleep, "awakeSleepSeconds", 0),  # awakeSleepSeconds
         )
+
+
+def get_attribute(data, attribute, default_value):
+    return data.get(attribute) or default_value

@@ -109,7 +109,14 @@ class GarminScreen:
         garmin_module = self.modules["garmin"]
         response = garmin_module.getSleedData()
         if response is not None:
-            (unmeasurableSleep, deepSleep, lightSleep, remSleep, test) = response
+            (
+                unmeasurableSleep,
+                deepSleep,
+                lightSleep,
+                remSleep,
+                respiration,
+                awakeSleep,
+            ) = response
         return frame
 
 
