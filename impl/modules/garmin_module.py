@@ -8,7 +8,7 @@ from garminconnect import (
     GarminConnectAuthenticationError,
 )
 
-today = datetime.date.today()
+today = datetime.date.timedelta(days=1)
 lastweek = today - datetime.timedelta(days=7)
 
 
@@ -43,5 +43,10 @@ class GarminModule:
         print("[Garmin Module] getSleedData called")
         print(today)
         print(sleep_data["dailySleepDTO"])
-        print("DEEP SLEEP " + sleep_data["dailySleepDTO"]["deepSleepSeconds"])
-        time.sleep(30)
+        print("DEEP SLEEP " + str(sleep_data["dailySleepDTO"]["deepSleepSeconds"]))
+        return (
+            sleep_data["dailySleepDTO"]["unmeasurableSleepSeconds"],
+            sleep_data["dailySleepDTO"]["deepSleepSeconds"],
+            sleep_data["dailySleepDTO"]["lightSleepSeconds"],
+            sleep_data["dailySleepDTO"]["remSleepSeconds"],
+        )

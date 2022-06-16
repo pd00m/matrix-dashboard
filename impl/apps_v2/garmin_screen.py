@@ -107,7 +107,9 @@ class GarminScreen:
         draw.text((0, 2), "Test health screen", white, font=self.font)
 
         garmin_module = self.modules["garmin"]
-        garmin_module.getSleedData()
+        response = garmin_module.getSleedData()
+        if response is not None:
+            (unmeasurableSleep, deepSleep, lightSleep, remSleep, test) = response
         return frame
 
 
