@@ -9,6 +9,7 @@ import math
 medium_blue = (0, 77, 179)
 light_blue = (50, 145, 168)
 white = (230, 255, 255)
+ignore_seconds = True
 
 
 class GarminScreen:
@@ -118,9 +119,10 @@ class GarminScreen:
                 awakeSleep,
             ) = response
             draw.text(
-                (10, 12),
+                (16, 12),
                 convertDuration(
-                    deepSleep + lightSleep + remSleep + awakeSleep + unmeasurableSleep
+                    deepSleep + lightSleep + remSleep + awakeSleep + unmeasurableSleep,
+                    ignore_seconds,
                 ),
                 white,
                 font=self.large_font,
@@ -136,15 +138,14 @@ def convertToMiles(meters):
     return str(roundValues(meters * 0.000621371192, 2))
 
 
-def convertDuration(seconds):
+def convertDuration(seconds, ignoreSeconds=False):
     hours = math.floor(seconds / 3600)
     minutes = math.floor((seconds / 60) % 60)
     seconds = seconds % 60
     duration_text = (
         (str(hours) + ":" if hours > 0 else "")
         + str(minutes)
-        + ":"
-        + str(padToTwoDigit(seconds))
+        + ((":" + str(padToTwoDigit(seconds))) if ignoreSeconds is False else "")
     )
     return duration_text
 
