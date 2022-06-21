@@ -17,6 +17,7 @@ class GarminScreen:
         self.default_actions = default_actions
 
         self.font = ImageFont.truetype("fonts/tiny.otf", 5)
+        self.large_font = ImageFont.truetype("fonts/tiny.otf", 8)
 
         self.canvas_width = config.getint("System", "canvas_width", fallback=64)
         self.canvas_height = config.getint("System", "canvas_height", fallback=32)
@@ -104,7 +105,6 @@ class GarminScreen:
     def healthStats(self):
         frame = Image.new("RGB", (self.canvas_width, self.canvas_height), (0, 0, 0))
         draw = ImageDraw.Draw(frame)
-        draw.text((0, 2), "Test health screen", white, font=self.font)
 
         garmin_module = self.modules["garmin"]
         response = garmin_module.getSleedData()
@@ -117,6 +117,14 @@ class GarminScreen:
                 respiration,
                 awakeSleep,
             ) = response
+            draw.text(
+                (10, 12),
+                convertDuration(
+                    deepSleep + lightSleep + remSleep + awakeSleep + unmeasurableSleep
+                ),
+                white,
+                font=self.large_font,
+            )
         return frame
 
 

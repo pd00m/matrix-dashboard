@@ -45,7 +45,6 @@ class GarminModule:
         print(today)
         print(sleep_data["dailySleepDTO"])
         print("DEEP SLEEP " + str(sleep_data["dailySleepDTO"]["deepSleepSeconds"]))
-        time.sleep(10)
         sleep = sleep_data["dailySleepDTO"]
         return (
             get_attribute(sleep, "unmeasurableSleepSeconds", 0),
