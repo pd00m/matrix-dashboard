@@ -43,12 +43,15 @@ class GarminModule:
         sleep_data = self.api.get_sleep_data(today)
         sleep = sleep_data["dailySleepDTO"]
         print(sleep_data)
+        time.sleep(10)
         return (
             get_attribute(sleep, "unmeasurableSleepSeconds", 0),
             get_attribute(sleep, "deepSleepSeconds", 0),
             get_attribute(sleep, "lightSleepSeconds", 0),
             get_attribute(sleep, "remSleepSeconds", 0),
-            get_attribute(sleep, "test", None),  # averageRespirationValue
+            get_attribute(
+                sleep, "averageRespirationValue", ""
+            ),  # averageRespirationValue
             get_attribute(sleep, "awakeSleepSeconds", 0),  # awakeSleepSeconds
         )
 
