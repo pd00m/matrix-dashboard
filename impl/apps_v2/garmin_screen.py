@@ -119,7 +119,7 @@ class GarminScreen:
                 awakeSleep,
             ) = response
             draw.text(
-                (16, 12),
+                (22, 12),
                 convertDuration(
                     deepSleep + lightSleep + remSleep + awakeSleep + unmeasurableSleep,
                     ignore_seconds,
@@ -127,6 +127,8 @@ class GarminScreen:
                 white,
                 font=self.large_font,
             )
+            draw.text((57, 0), str(respiration), light_blue, font=self.font)
+
         return frame
 
 
