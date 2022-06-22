@@ -130,10 +130,10 @@ class GarminScreen:
                 deepSleep + lightSleep + remSleep + awakeSleep + unmeasurableSleep
             )
             if startSleepTime is not 0:
-                start = time.strftime("%H:%M", time.localtime(startSleepTime))
+                start = time.strftime("%H:%M", time.localtime(startSleepTime / 1000))
                 draw.text((0, 0), str(start), light_blue, font=self.font)
             if endSleepTime is not 0:
-                end = time.strftime("%H:%M", time.localtime(endSleepTime))
+                end = time.strftime("%H:%M", time.localtime(endSleepTime / 1000))
                 draw.text((45, 0), str(end), light_blue, font=self.font)
             draw.text(
                 (22, 12),
