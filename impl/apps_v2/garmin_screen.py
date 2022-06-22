@@ -8,7 +8,12 @@ import math
 
 medium_blue = (0, 77, 179)
 light_blue = (50, 145, 168)
+dark_blue = (10, 16, 74)
+purple = (89, 4, 78)
+pink = (245, 122, 229)
 white = (230, 255, 255)
+
+
 ignore_seconds = True
 
 
@@ -118,16 +123,24 @@ class GarminScreen:
                 respiration,
                 awakeSleep,
             ) = response
+
+            total_sleep = (
+                deepSleep + lightSleep + remSleep + awakeSleep + unmeasurableSleep
+            )
+
             draw.text(
                 (22, 12),
-                convertDuration(
-                    deepSleep + lightSleep + remSleep + awakeSleep + unmeasurableSleep,
-                    ignore_seconds,
-                ),
+                convertDuration(total_sleep, ignore_seconds),
                 white,
                 font=self.large_font,
             )
             draw.text((57, 0), str(respiration), light_blue, font=self.font)
+
+            total_sleep = (
+                deepSleep + lightSleep + remSleep + awakeSleep + unmeasurableSleep
+            )
+
+            draw.rectangle((0, 0, 0, 15), fill=(purple))
 
         return frame
 
