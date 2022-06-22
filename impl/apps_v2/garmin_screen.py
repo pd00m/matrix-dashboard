@@ -122,19 +122,26 @@ class GarminScreen:
                 remSleep,
                 respiration,
                 awakeSleep,
+                startSleepTime,
+                endSleepTime,
             ) = response
 
             total_sleep = (
                 deepSleep + lightSleep + remSleep + awakeSleep + unmeasurableSleep
             )
-
+            if startSleepTime is not 0:
+                start = time.strftime("%H:%M", time.localtime(startSleepTime))
+                draw.text((0, 0), str(start), light_blue, font=self.font)
+            if endSleepTime is not 0:
+                end = time.strftime("%H:%M", time.localtime(endSleepTime))
+                draw.text((45, 0), str(end), light_blue, font=self.font)
             draw.text(
                 (22, 12),
                 convertDuration(total_sleep, ignore_seconds),
                 white,
                 font=self.large_font,
             )
-            draw.text((57, 0), str(respiration), light_blue, font=self.font)
+            draw.text((20, 35), str(respiration), light_blue, font=self.font)
 
             total_sleep = (
                 deepSleep + lightSleep + remSleep + awakeSleep + unmeasurableSleep
