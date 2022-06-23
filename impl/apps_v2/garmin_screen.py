@@ -135,7 +135,7 @@ class GarminScreen:
             if endSleepTime != 0:
                 end = datetime.fromtimestamp(endSleepTime / 1000).strftime("%H:%M")
                 draw.text((45, 0), str(end), light_blue, font=self.font)
-            draw.text((47, 20), str(int(respiration)), light_blue, font=self.font)
+            draw.text((50, 15), str(int(respiration)), light_blue, font=self.font)
             draw.text(
                 (21, 12),
                 convertDuration(total_sleep, ignore_seconds),
