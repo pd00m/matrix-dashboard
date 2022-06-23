@@ -146,8 +146,10 @@ class GarminScreen:
             total_sleep = (
                 deepSleep + lightSleep + remSleep + awakeSleep + unmeasurableSleep
             )
-
-            draw.rectangle((0, 25, 15, 32), fill=(purple))
+            draw.rectangle((0, 25, 15, 32), fill=(light_blue))
+            draw.rectangle((16, 25, 22, 32), fill=(dark_blue))
+            draw.rectangle((23, 25, 36, 32), fill=(purple))
+            draw.rectangle((37, 25, 64, 32), fill=(pink))
 
         return frame
 

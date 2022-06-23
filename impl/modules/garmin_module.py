@@ -47,9 +47,7 @@ class GarminModule:
             get_attribute(sleep, "deepSleepSeconds", 0),
             get_attribute(sleep, "lightSleepSeconds", 0),
             get_attribute(sleep, "remSleepSeconds", 0),
-            get_attribute(
-                sleep, "averageRespirationValue", ""
-            ),  # averageRespirationValue
+            get_attribute(sleep, "averageRespirationValue", ""),
             get_attribute(sleep, "awakeSleepSeconds", 0),
             get_attribute(sleep, "sleepStartTimestampGMT", 0),
             get_attribute(sleep, "sleepEndTimestampGMT", 0),
