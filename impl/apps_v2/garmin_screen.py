@@ -137,7 +137,7 @@ class GarminScreen:
                 draw.text((45, 0), str(end), light_blue, font=self.font)
             draw.text((50, 15), str(int(respiration)), light_blue, font=self.font)
             draw.text(
-                (21, 12),
+                (20, 12),
                 convertDuration(total_sleep, ignore_seconds),
                 white,
                 font=self.large_font,
