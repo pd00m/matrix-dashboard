@@ -124,6 +124,7 @@ class GarminScreen:
                 awakeSleep,
                 startSleepTime,
                 endSleepTime,
+                sleeplevels,
             ) = response
 
             total_sleep = (
@@ -146,12 +147,22 @@ class GarminScreen:
             total_sleep = (
                 deepSleep + lightSleep + remSleep + awakeSleep + unmeasurableSleep
             )
-            draw.rectangle((0, 25, 15, 32), fill=(light_blue))
-            draw.rectangle((16, 25, 22, 32), fill=(dark_blue))
-            draw.rectangle((23, 25, 36, 32), fill=(purple))
-            draw.rectangle((37, 25, 64, 32), fill=(pink))
-
+            displaySleepRetangles(sleeplevels, total_sleep, draw)
         return frame
+
+
+def displaySleepRetangles(sleep, total_sleep, draw):
+    sleep_colors = [light_blue, dark_blue, purple, pink]
+
+    for level in sleep:
+        length = level["endGMT"] - level["startGMT"]
+        print(str(length))
+
+    draw.rectangle((0, 25, 15, 32), fill=(light_blue))
+    draw.rectangle((16, 25, 22, 32), fill=(dark_blue))
+    draw.rectangle((23, 25, 36, 32), fill=(purple))
+    draw.rectangle((37, 25, 64, 32), fill=(pink))
+    return
 
 
 def roundValues(num, digits):
