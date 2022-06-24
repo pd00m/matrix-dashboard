@@ -156,8 +156,8 @@ def displaySleepRetangles(sleep, total_sleep, draw):
 
     for level in sleep:
         length = datetime.strptime(
-            level["endGMT"], "%Y-%m-%dT%H:%M:%S"
-        ) - datetime.strptime(level["startGMT"], "%Y-%m-%dT%H:%M:%S")
+            level["endGMT"], "%Y-%m-%dT%H:%M:%S.%f"
+        ) - datetime.strptime(level["startGMT"], "%Y-%m-%dT%H:%M:%S.%f")
         print(str(length))
 
     draw.rectangle((0, 25, 15, 32), fill=(light_blue))
