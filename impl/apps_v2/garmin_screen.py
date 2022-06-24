@@ -165,7 +165,7 @@ def displaySleepRetangles(sleep, total_sleep, draw, self):
         ).total_seconds()
         print("Length: " + str(length))
         print("Total: " + str(total_sleep))
-        fillRatio = math.floor((total_sleep / length * self.canvas_width))
+        fillRatio = math.floor((length / total_sleep * self.canvas_width))
         print("Ratio: " + str(fillRatio))
         if fillRatio >= 1:
             xmax = xmin + fillRatio
