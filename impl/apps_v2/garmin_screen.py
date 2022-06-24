@@ -151,19 +151,33 @@ class GarminScreen:
         return frame
 
 
-def displaySleepRetangles(sleep, total_sleep, draw):
-    sleep_colors = [light_blue, dark_blue, purple, pink]
+def displaySleepRetangles(sleep, total_sleep, draw, self):
+    sleep_colors = [dark_blue, light_blue, purple, pink]
+    ymin = 25
+    ymax = self.canvas_height
+    xmin = 0
+    xmax = 0
 
     for level in sleep:
-        length = datetime.strptime(
-            level["endGMT"], "%Y-%m-%dT%H:%M:%S.%f"
-        ) - datetime.strptime(level["startGMT"], "%Y-%m-%dT%H:%M:%S.%f")
-        print(str(length))
+        length = (
+            datetime.strptime(level["endGMT"], "%Y-%m-%dT%H:%M:%S.%f")
+            - datetime.strptime(level["startGMT"], "%Y-%m-%dT%H:%M:%S.%f")
+        ).total_seconds()
+        # print(str(length))
+        fillRatio = math.floor((total_sleep - length) / self.canvas_width)
+        print(str(fillRatio))
+        if fillRatio >= 1:
+            xmax = xmin + fillRatio
+            draw.rectangle(
+                (xmin, ymin, xmax, ymax),
+                fill=(sleep_colors[int(level["activityLevel"])]),
+            )
+            xmin = xmax
 
-    draw.rectangle((0, 25, 15, 32), fill=(light_blue))
-    draw.rectangle((16, 25, 22, 32), fill=(dark_blue))
-    draw.rectangle((23, 25, 36, 32), fill=(purple))
-    draw.rectangle((37, 25, 64, 32), fill=(pink))
+    # draw.rectangle((0, ymin, 15, ymax), fill=(light_blue))
+    # draw.rectangle((16, ymin, 22, ymax), fill=(dark_blue))
+    # draw.rectangle((23, ymin, 36, ymax), fill=(purple))
+    # draw.rectangle((37, ymin, 64, ymax), fill=(pink))
     return
 
 
