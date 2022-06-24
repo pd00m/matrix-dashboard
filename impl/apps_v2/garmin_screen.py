@@ -147,7 +147,7 @@ class GarminScreen:
             total_sleep = (
                 deepSleep + lightSleep + remSleep + awakeSleep + unmeasurableSleep
             )
-            displaySleepRetangles(sleeplevels, total_sleep, draw)
+            displaySleepRetangles(sleeplevels, total_sleep, draw, self)
         return frame
 
 
