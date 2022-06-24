@@ -155,7 +155,9 @@ def displaySleepRetangles(sleep, total_sleep, draw):
     sleep_colors = [light_blue, dark_blue, purple, pink]
 
     for level in sleep:
-        length = level["endGMT"] - level["startGMT"]
+        length = datetime.strptime(level["endGMT"]) - datetime.strptime(
+            level["startGMT"]
+        )
         print(str(length))
 
     draw.rectangle((0, 25, 15, 32), fill=(light_blue))
