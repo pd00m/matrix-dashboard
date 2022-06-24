@@ -163,7 +163,7 @@ def displaySleepRetangles(sleep, total_sleep, draw, self):
             datetime.strptime(level["endGMT"], "%Y-%m-%dT%H:%M:%S.%f")
             - datetime.strptime(level["startGMT"], "%Y-%m-%dT%H:%M:%S.%f")
         ).total_seconds()
-        fillRatio = math.floor((length / total_sleep * self.canvas_width))
+        fillRatio = round((length / total_sleep * self.canvas_width))
         if fillRatio >= 1:
             xmax = xmin + fillRatio
             draw.rectangle(
