@@ -54,7 +54,7 @@ class MainScreen:
                 "RGB"
             ),
         }
-        # self.theme_list = [self.generateSakura, self.generateCloud, self.generateForest]
+        self.theme_list = [self.generateSakura, self.generateCloud, self.generateForest]
         self.theme_list = [self.generateSakura, self.generateForest]
 
         self.currentIdx = 0
