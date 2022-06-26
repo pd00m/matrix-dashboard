@@ -55,6 +55,7 @@ class NotificationModule:
 
 class Notification:
     def __init__(self, application, addToCount, noti_id, title, body, noti_time):
+        print("entering in the notification class")
         self.application = application
         self.addToCount = addToCount
         self.noti_id = noti_id
