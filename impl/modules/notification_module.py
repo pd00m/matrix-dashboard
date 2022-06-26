@@ -72,6 +72,7 @@ class Notification:
 
 
 def on_message(_, message, noti_queue, app_white_list):
+    print("Message received!")
     message = json.loads(message)
     print(message)
     print(app_white_list)
