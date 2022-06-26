@@ -138,7 +138,7 @@ class MainScreen:
 
         # notifications
         noti_list = self.modules["notifications"].getNotificationList()
-        counts = countList()
+        counts = countList(noti_list)
 
         if counts["Discord"] > 0:
             draw.rectangle((37, 26, 38, 27), fill=discordColor)
