@@ -137,6 +137,7 @@ class MainScreen:
 
         # notifications
         noti_list = self.modules["notifications"].getNotificationList()
+        print(noti_list)
         counts = countList(noti_list)
 
         if counts["Discord"] > 0:
