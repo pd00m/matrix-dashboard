@@ -76,31 +76,31 @@ def on_message(_, message, noti_queue, app_white_list):
     message = json.loads(message)
     print(message)
     print(app_white_list)
-    if message["type"] == "push":
-        contents = message["push"]
-        if contents["package_name"] in app_white_list.keys():
-            if contents["type"] == "mirror":
-                noti_queue.put(
-                    Notification(
-                        app_white_list[contents["package_name"]],
-                        True,
-                        int(contents["notification_id"]),
-                        contents["title"],
-                        contents["body"],
-                        time.time(),
-                    )
-                )
-            elif contents["type"] == "dismissal":
-                noti_queue.put(
-                    Notification(
-                        app_white_list[contents["package_name"]],
-                        False,
-                        int(contents["notification_id"]),
-                        "",
-                        "",
-                        time.time(),
-                    )
-                )
+    # if message["type"] == "push":
+    #     contents = message["push"]
+    #     if contents["package_name"] in app_white_list.keys():
+    #         if contents["type"] == "mirror":
+    #             noti_queue.put(
+    #                 Notification(
+    #                     app_white_list[contents["package_name"]],
+    #                     True,
+    #                     int(contents["notification_id"]),
+    #                     contents["title"],
+    #                     contents["body"],
+    #                     time.time(),
+    #                 )
+    #             )
+    #         elif contents["type"] == "dismissal":
+    #             noti_queue.put(
+    #                 Notification(
+    #                     app_white_list[contents["package_name"]],
+    #                     False,
+    #                     int(contents["notification_id"]),
+    #                     "",
+    #                     "",
+    #                     time.time(),
+    #                 )
+    #             )
 
 
 def on_error(_, error, noti_queue, pushbullet_ws, app_white_list):
