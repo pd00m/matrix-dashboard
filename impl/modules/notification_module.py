@@ -113,6 +113,10 @@ def on_close(_):
     print("### websocket closed ###")
 
 
+def onmessage():
+    print("Message came here")
+
+
 def startService(noti_queue, pushbullet_ws, app_white_list):
     ws = websocket.WebSocketApp(
         pushbullet_ws,
@@ -124,6 +128,7 @@ def startService(noti_queue, pushbullet_ws, app_white_list):
         ),
         on_close=on_close,
     )
+    ws.onmessage = onmessage()
     ws.run_forever()
 
 
