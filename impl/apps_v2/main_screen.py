@@ -179,7 +179,7 @@ class MainScreen:
             ),
         ).start()
 
-        # self.old_noti_list = noti_list.copy()
+        self.old_noti_list = noti_list.copy()
 
         if len(self.queued_frames) == 0:
             frame = Image.new(
