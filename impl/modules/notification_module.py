@@ -74,6 +74,7 @@ class Notification:
 def on_message(_, message, noti_queue, app_white_list):
     message = json.loads(message)
     print(message)
+    print(app_white_list)
     if message["type"] == "push":
         contents = message["push"]
         if contents["package_name"] in app_white_list.keys():
