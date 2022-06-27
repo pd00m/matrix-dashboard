@@ -95,28 +95,28 @@ def on_message(_, message, noti_queue, app_white_list):
         elif contents["type"] == "sms_changed":
             print("SMS received!")
             print(contents["notifications"])
-            noti_queue.put(
-                Notification(
-                    app_white_list["sms"],
-                    True,
-                    int(contents["notifications"]["thread_id"]),
-                    contents["notifications"]["title"],
-                    contents["notifications"]["body"],
-                    time.time(),
-                )
-            )
+            # noti_queue.put(
+            #     Notification(
+            #         app_white_list["sms"],
+            #         True,
+            #         int(contents["notifications"]["thread_id"]),
+            #         contents["notifications"]["title"],
+            #         contents["notifications"]["body"],
+            #         time.time(),
+            #     )
+            # )
         elif contents["type"] == "dismissal":
             print("Dismissal received!")
-            noti_queue.put(
-                Notification(
-                    app_white_list[contents["package_name"]],
-                    False,
-                    int(contents["notification_id"]),
-                    "",
-                    "",
-                    time.time(),
-                )
-            )
+            # noti_queue.put(
+            #     Notification(
+            #         app_white_list[contents["package_name"]],
+            #         False,
+            #         int(contents["notification_id"]),
+            #         "",
+            #         "",
+            #         time.time(),
+            #     )
+            # )
 
 
 def on_error(_, error, noti_queue, pushbullet_ws, app_white_list):
