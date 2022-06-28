@@ -77,6 +77,7 @@ def on_message(_, message, noti_queue, app_white_list):
     message = json.loads(message)
     print(message)
     print(app_white_list)
+    print(app_white_list.keys())
     if message["type"] == "push":
         contents = message["push"]
         # if contents["package_name"] in app_white_list.keys():
@@ -116,6 +117,7 @@ def on_message(_, message, noti_queue, app_white_list):
                     time.time(),
                 )
             )
+        print("Push processed completed")
 
 
 def on_error(_, error, noti_queue, pushbullet_ws, app_white_list):
