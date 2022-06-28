@@ -95,9 +95,9 @@ def on_message(_, message, noti_queue, app_white_list):
             )
         elif contents["type"] == "sms_changed" and len(contents["notifications"]) > 0:
             print("SMS received!")
-            print(contents[0]["notifications"]["title"])
-            print(int(contents[0]["notifications"]["thread_id"]))
-            print(contents[0]["notifications"]["body"])
+            print(contents["notifications"][0]["title"])
+            print(int(contents["notifications"][0]["thread_id"]))
+            print(contents["notifications"][0]["body"])
             noti_queue.put(
                 Notification(
                     "SMS",
