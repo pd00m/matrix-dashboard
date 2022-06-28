@@ -97,7 +97,7 @@ def on_message(_, message, noti_queue, app_white_list):
             print("SMS received!")
             noti_queue.put(
                 Notification(
-                    app_white_list["sms"],
+                    "SMS",
                     True,
                     int(contents["notifications"]["thread_id"]),
                     contents["notifications"]["title"],
