@@ -141,12 +141,12 @@ class MainScreen:
 
         if counts["SMS"] > 0:
             draw.rectangle((37, 26, 38, 27), fill=smsColor)
-        if counts["Webex"] > 0:
-            draw.rectangle((34, 26, 35, 27), fill=webexColor)
+        if counts["Whatsapp"] > 0:
+            draw.rectangle((34, 26, 35, 27), fill=whatsappColor)
         if counts["Gmail"] > 0:
             draw.rectangle((34, 29, 35, 30), fill=gMailColor)
-        if counts["Whatsapp"] > 0:
-            draw.rectangle((37, 29, 38, 30), fill=whatsappColor)
+        if counts["Webex"] > 0:
+            draw.rectangle((37, 29, 38, 30), fill=webexColor)
 
         self.old_noti_list = noti_list
 
@@ -250,7 +250,7 @@ def padToTwoDigit(num):
 
 
 def countList(noti_list):
-    counts = {"Discord": 0, "SMS": 0, "Snapchat": 0, "Messenger": 0}
+    counts = {"SMS": 0, "Whatsapp": 0, "Gmail": 0, "Webex": 0}
     for noti in noti_list:
         if noti.application in counts.keys():
             counts[noti.application] = counts[noti.application] + 1
