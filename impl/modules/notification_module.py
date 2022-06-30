@@ -80,7 +80,7 @@ def on_message(_, message, noti_queue, app_white_list):
     print(app_white_list.keys())
     if message["type"] == "push":
         contents = message["push"]
-        print(contents["package_name"])
+        print("Package Name: " + contents["package_name"])
         # if contents["package_name"] in app_white_list.keys():
         if contents["type"] == "mirror":
             print("Mirror received!")
