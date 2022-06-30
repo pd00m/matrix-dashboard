@@ -17,10 +17,10 @@ orange_tinted_white = (248, 237, 235)
 
 washed_out_navy = (109, 104, 117)
 
-discordColor = (150, 170, 255)
-messengerColor = (60, 220, 255)
-snapchatColor = (255, 252, 0)
-smsColor = (110, 255, 140)
+webexColor = (70, 2, 97)
+whatsappColor = (7, 166, 65)
+gMailColor = (166, 7, 7)
+smsColor = (3, 123, 252)
 
 spotify_color = (0, 255, 0)
 
@@ -139,14 +139,14 @@ class MainScreen:
         noti_list = self.modules["notifications"].getNotificationList()
         counts = countList(noti_list)
 
-        if counts["Discord"] > 0:
-            draw.rectangle((37, 26, 38, 27), fill=discordColor)
         if counts["SMS"] > 0:
-            draw.rectangle((34, 26, 35, 27), fill=smsColor)
-        if counts["Snapchat"] > 0:
-            draw.rectangle((34, 29, 35, 30), fill=snapchatColor)
-        if counts["Messenger"] > 0:
-            draw.rectangle((37, 29, 38, 30), fill=messengerColor)
+            draw.rectangle((37, 26, 38, 27), fill=smsColor)
+        if counts["Whatsapp"] > 0:
+            draw.rectangle((34, 26, 35, 27), fill=whatsappColor)
+        if counts["Gmail"] > 0:
+            draw.rectangle((34, 29, 35, 30), fill=gMailColor)
+        if counts["Webex"] > 0:
+            draw.rectangle((37, 29, 38, 30), fill=webexColor)
 
         self.old_noti_list = noti_list
 
@@ -250,7 +250,7 @@ def padToTwoDigit(num):
 
 
 def countList(noti_list):
-    counts = {"Discord": 0, "SMS": 0, "Snapchat": 0, "Messenger": 0}
+    counts = {"SMS": 0, "Whatsapp": 0, "Gmail": 0, "Webex": 0}
     for noti in noti_list:
         if noti.application in counts.keys():
             counts[noti.application] = counts[noti.application] + 1
