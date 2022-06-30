@@ -83,7 +83,7 @@ def on_message(_, message, noti_queue, app_white_list):
                 print(data)
                 noti_queue.put(
                     Notification(
-                        "SMS",
+                        "sms",
                         True,
                         data["thread_id"],
                         data["title"],
@@ -114,7 +114,7 @@ def on_message(_, message, noti_queue, app_white_list):
                         print(data)
                         noti_queue.put(
                             Notification(
-                                "SMS",
+                                "sms",
                                 True,
                                 data["thread_id"],
                                 data["title"],
