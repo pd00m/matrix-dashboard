@@ -83,7 +83,7 @@ def on_message(_, message, noti_queue, app_white_list):
                 print(data)
                 noti_queue.put(
                     Notification(
-                        "sms",
+                        "SMS",
                         True,
                         data["thread_id"],
                         data["title"],
@@ -105,25 +105,9 @@ def on_message(_, message, noti_queue, app_white_list):
                                 time.time(),
                             )
                         )
-                    elif (
-                        contents["type"] == "sms_changed"
-                        and len(contents["notifications"]) > 0
-                    ):
-                        print("SMS received!")
-                        data = contents["notifications"][0]
-                        print(data)
-                        noti_queue.put(
-                            Notification(
-                                "sms",
-                                True,
-                                data["thread_id"],
-                                data["title"],
-                                data["body"],
-                                time.time(),
-                            )
-                        )
                     elif contents["type"] == "dismissal":
                         print("Dismissal received!")
+                        print(message)
                         noti_queue.put(
                             Notification(
                                 app_white_list[contents["package_name"]],
