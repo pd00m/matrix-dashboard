@@ -80,46 +80,48 @@ def on_message(_, message, noti_queue, app_white_list):
     print(app_white_list.keys())
     if message["type"] == "push":
         contents = message["push"]
-        # if contents["package_name"] in app_white_list.keys():
-        if contents["type"] == "mirror":
-            print("Mirror received!")
-            noti_queue.put(
-                Notification(
-                    app_white_list[contents["package_name"]],
-                    True,
-                    int(contents["notification_id"]),
-                    contents["title"],
-                    contents["body"],
-                    time.time(),
+        if contents["package_name"] in app_white_list.keys():
+            if contents["type"] == "mirror":
+                print("Mirror received!")
+                noti_queue.put(
+                    Notification(
+                        app_white_list[contents["package_name"]],
+                        True,
+                        int(contents["notification_id"]),
+                        contents["title"],
+                        contents["body"],
+                        time.time(),
+                    )
                 )
-            )
-        elif contents["type"] == "sms_changed" and len(contents["notifications"]) > 0:
-            print("SMS received!")
-            data = contents["notifications"][0]
-            print(data)
-            noti_queue.put(
-                Notification(
-                    "SMS",
-                    True,
-                    data["thread_id"],
-                    data["title"],
-                    data["body"],
-                    time.time(),
+            elif (
+                contents["type"] == "sms_changed" and len(contents["notifications"]) > 0
+            ):
+                print("SMS received!")
+                data = contents["notifications"][0]
+                print(data)
+                noti_queue.put(
+                    Notification(
+                        "SMS",
+                        True,
+                        data["thread_id"],
+                        data["title"],
+                        data["body"],
+                        time.time(),
+                    )
                 )
-            )
-        elif contents["type"] == "dismissal":
-            print("Dismissal received!")
-            noti_queue.put(
-                Notification(
-                    app_white_list[contents["package_name"]],
-                    False,
-                    int(contents["notification_id"]),
-                    "",
-                    "",
-                    time.time(),
+            elif contents["type"] == "dismissal":
+                print("Dismissal received!")
+                noti_queue.put(
+                    Notification(
+                        app_white_list[contents["package_name"]],
+                        False,
+                        int(contents["notification_id"]),
+                        "",
+                        "",
+                        time.time(),
+                    )
                 )
-            )
-        print("Push processed completed")
+            print("Push processed completed")
 
 
 def on_error(_, error, noti_queue, pushbullet_ws, app_white_list):
