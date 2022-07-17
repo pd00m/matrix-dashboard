@@ -5,6 +5,8 @@ from InputStatus import InputStatusEnum
 from ast import literal_eval
 import math
 
+from impl.modules.garmin_module import GarminModule
+
 
 medium_blue = (0, 77, 179)
 light_blue = (50, 145, 168)
@@ -35,6 +37,7 @@ class GarminScreen:
 
         self.bgs = {"road": Image.open("apps_v2/res/garmin/road.png").convert("RGB")}
 
+        GarminModule.garminLogin(self, config)
         self.theme_list = [self.lastActivity, self.healthStats]
 
         self.currentIdx = 0
