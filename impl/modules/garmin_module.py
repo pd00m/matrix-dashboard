@@ -1,3 +1,4 @@
+import configparser
 import time
 import datetime
 
@@ -65,6 +66,7 @@ def get_attribute(data, attribute, default_value):
 
 def garmin_login(self):
     try:
+        config = configparser.ConfigParser()
         client_id = config["Garmin"]["email"]
         client_password = config["Garmin"]["password"]
         self.api = Garmin(client_id, client_password)
