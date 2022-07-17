@@ -1,5 +1,4 @@
 import configparser
-import json
 import time
 import datetime
 
@@ -27,16 +26,14 @@ class GarminModule:
             self.api = Garmin(client_id, client_password)
             self.api.login()
             saved_session = self.api.session_data
-            results = json.dumps(saved_session)
-            self.restored_session = json.loads(results)
 
         except Exception as e:
             print("[Garmin Module] error trying to authenticate", e)
             self.invalid = True
 
     def getLastActivity(self):
-        # garmin_login(self)
-        last_activity = self.restored_session.get_last_activity()
+        garmin_login(self)
+        last_activity = self.api.get_last_activity()
         return (
             last_activity["distance"],
             last_activity["duration"],
@@ -46,8 +43,8 @@ class GarminModule:
         )
 
     def getSleedData(self):
-        # garmin_login(self)
-        sleep_data = self.restored_session.get_sleep_data(today)
+        garmin_login(self)
+        sleep_data = self.api.get_sleep_data(today)
         sleep = sleep_data["dailySleepDTO"]
         sleeplevels = sleep_data["sleepLevels"]
         return (
@@ -70,8 +67,9 @@ def get_attribute(data, attribute, default_value):
 def garmin_login(self):
     try:
         config = configparser.ConfigParser()
-        client_id = config["Garmin"]["email"]
-        client_password = config["Garmin"]["password"]
+        parsed_configs = config.read("../config.ini")
+        client_id = parsed_configs["Garmin"]["email"]
+        client_password = parsed_configs["Garmin"]["password"]
         self.api = Garmin(client_id, client_password)
         self.api.login()
 
