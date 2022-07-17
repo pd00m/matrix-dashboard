@@ -24,12 +24,14 @@ class GarminModule:
             client_password = config["Garmin"]["password"]
             self.api = Garmin(client_id, client_password)
             self.api.login()
+            saved_session = self.api.session_data
 
         except Exception as e:
             print("[Garmin Module] error trying to authenticate", e)
             self.invalid = True
 
     def getLastActivity(self):
+        garmin_login(self)
         last_activity = self.api.get_last_activity()
         return (
             last_activity["distance"],
@@ -40,6 +42,7 @@ class GarminModule:
         )
 
     def getSleedData(self):
+        garmin_login(self)
         sleep_data = self.api.get_sleep_data(today)
         sleep = sleep_data["dailySleepDTO"]
         sleeplevels = sleep_data["sleepLevels"]
@@ -58,3 +61,15 @@ class GarminModule:
 
 def get_attribute(data, attribute, default_value):
     return data.get(attribute) or default_value
+
+
+def garmin_login(self):
+    try:
+        client_id = config["Garmin"]["email"]
+        client_password = config["Garmin"]["password"]
+        self.api = Garmin(client_id, client_password)
+        self.api.login()
+
+    except Exception as e:
+        print("[Garmin Module] error trying to authenticate", e)
+        self.invalid = True
