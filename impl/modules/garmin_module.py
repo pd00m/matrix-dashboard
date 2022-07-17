@@ -67,7 +67,7 @@ def get_attribute(data, attribute, default_value):
 def garmin_login(self):
     try:
         config = configparser.ConfigParser()
-        parsed_configs = config.read("../config.ini")
+        parsed_configs = config.read("../../config.ini")
         client_id = parsed_configs["Garmin"]["email"]
         client_password = parsed_configs["Garmin"]["password"]
         self.api = Garmin(client_id, client_password)
