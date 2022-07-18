@@ -38,7 +38,8 @@ class GarminScreen:
         self.bgs = {"road": Image.open("apps_v2/res/garmin/road.png").convert("RGB")}
         garmin_module = self.modules["garmin"]
         garmin_module.garminLogin(self.email, self.pw)
-        self.theme_list = [self.lastActivity, self.healthStats]
+        self.theme_list = [self.lastActivity]
+        # self.theme_list = [self.lastActivity, self.healthStats]
 
         self.currentIdx = 0
         self.selectMode = False
