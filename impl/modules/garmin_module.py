@@ -19,6 +19,7 @@ lastweek = today - datetime.timedelta(days=7)
 class GarminModule:
     def __init__(self, config):
         self.last_activity = None
+        self.sleep_data = None
         self.activity_queue = LifoQueue()
         self.sleep_queue = LifoQueue()
 
@@ -56,10 +57,10 @@ class GarminModule:
 
     def getSleedData(self):
         if not self.activity_queue.empty():
-            self.sleep_queue = self.sleep_queue.get()
+            self.sleep_data = self.sleep_queue.get()
             self.sleep_queue.queue.clear()
-        sleep = self.sleep_queue["dailySleepDTO"]
-        sleeplevels = self.sleep_queue["sleepLevels"]
+        sleep = self.sleep_data["dailySleepDTO"]
+        sleeplevels = self.sleep_data["sleepLevels"]
         return (
             get_attribute(sleep, "unmeasurableSleepSeconds", 0),
             get_attribute(sleep, "deepSleepSeconds", 0),
