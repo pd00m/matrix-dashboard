@@ -27,6 +27,9 @@ class GarminScreen:
         self.canvas_width = config.getint("System", "canvas_width", fallback=64)
         self.canvas_height = config.getint("System", "canvas_height", fallback=32)
 
+        self.email = config.getint("Garmin", "email")
+        self.pw = config.getint("Garmin", "password")
+
         self.text_color = literal_eval(
             config.get("Garmin Screen", "text_color", fallback="(255,255,255)")
         )
@@ -34,7 +37,7 @@ class GarminScreen:
 
         self.bgs = {"road": Image.open("apps_v2/res/garmin/road.png").convert("RGB")}
         garmin_module = self.modules["garmin"]
-        garmin_module.garminLogin(config)
+        garmin_module.garminLogin(self.email, self.pw)
         self.theme_list = [self.lastActivity, self.healthStats]
 
         self.currentIdx = 0
