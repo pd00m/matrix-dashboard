@@ -59,9 +59,9 @@ class GarminModule:
 
     def garminLogin(self, email, pw):
         try:
+            print("[Garmin Module] attempting to log in again. ", email, pw)
             self.api = Garmin(email, pw)
             self.api.login()
-
         except Exception as e:
             print("[Garmin Module] error trying to authenticate", e)
             self.invalid = True
