@@ -57,11 +57,9 @@ class GarminModule:
             sleeplevels,
         )
 
-    def garminLogin(self, config):
+    def garminLogin(self, email, pw):
         try:
-            client_id = config["Garmin"]["email"]
-            client_password = config["Garmin"]["password"]
-            self.api = Garmin(client_id, client_password)
+            self.api = Garmin(email, pw)
             self.api.login()
 
         except Exception as e:
