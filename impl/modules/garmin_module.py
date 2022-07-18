@@ -32,7 +32,6 @@ class GarminModule:
             self.invalid = True
 
     def getLastActivity(self):
-        garmin_login(self)
         last_activity = self.api.get_last_activity()
         return (
             last_activity["distance"],
@@ -43,7 +42,6 @@ class GarminModule:
         )
 
     def getSleedData(self):
-        garmin_login(self)
         sleep_data = self.api.get_sleep_data(today)
         sleep = sleep_data["dailySleepDTO"]
         sleeplevels = sleep_data["sleepLevels"]
@@ -59,12 +57,10 @@ class GarminModule:
             sleeplevels,
         )
 
-    def garmin_login(self):
+    def garminLogin(self, config):
         try:
-            config = configparser.ConfigParser()
-            parsed_configs = config.read("../../config.ini")
-            client_id = parsed_configs["Garmin"]["email"]
-            client_password = parsed_configs["Garmin"]["password"]
+            client_id = config["Garmin"]["email"]
+            client_password = config["Garmin"]["password"]
             self.api = Garmin(client_id, client_password)
             self.api.login()
 
