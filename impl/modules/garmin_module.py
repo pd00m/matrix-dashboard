@@ -56,7 +56,7 @@ class GarminModule:
         )
 
     def getSleedData(self):
-        if not self.activity_queue.empty():
+        if not self.sleep_queue.empty():
             self.sleep_data = self.sleep_queue.get()
             self.sleep_queue.queue.clear()
         sleep = self.sleep_data["dailySleepDTO"]
