@@ -55,9 +55,11 @@ class GarminModule:
         )
 
     def getSleedData(self):
-        sleep_data = self.api.get_sleep_data(today)
-        sleep = sleep_data["dailySleepDTO"]
-        sleeplevels = sleep_data["sleepLevels"]
+        if not self.activity_queue.empty():
+            self.sleep_queue = self.sleep_queue.get()
+            self.sleep_queue.queue.clear()
+        sleep = self.sleep_queue["dailySleepDTO"]
+        sleeplevels = self.sleep_queue["sleepLevels"]
         return (
             get_attribute(sleep, "unmeasurableSleepSeconds", 0),
             get_attribute(sleep, "deepSleepSeconds", 0),
