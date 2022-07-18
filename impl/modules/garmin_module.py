@@ -85,7 +85,8 @@ def garminLogin(activity_queue, sleep_queue, email, pw):
     # except Exception as e:
     #     print("[Garmin Module] error trying to authenticate", e)
     #     self.invalid = True
-    #     lastTimeCall = 0
+    lastTimeCall = 0
+
     while True:
         currTime = time.time()
         if currTime - lastTimeCall >= 600:
