@@ -27,11 +27,6 @@ class GarminModule:
 
         ## Initialize Garmin api with your credentials
         try:
-            # client_id = config["Garmin"]["email"]
-            # client_password = config["Garmin"]["password"]
-            # self.api = Garmin(client_id, client_password)
-            # self.api.login()
-
             self.thread = Thread(
                 target=garminLogin,
                 args=(
@@ -51,7 +46,6 @@ class GarminModule:
         if not self.activity_queue.empty():
             self.last_activity = self.activity_queue.get()
             self.activity_queue.queue.clear()
-        # last_activity = self.api.get_last_activity()
         return (
             self.last_activity["distance"],
             self.last_activity["duration"],
@@ -78,20 +72,11 @@ class GarminModule:
 
 
 def garminLogin(activity_queue, sleep_queue, email, pw):
-    # try:
-    #     print("[Garmin Module] attempting to log in again. ", email, pw)
-    #     self.api = Garmin(email, pw)
-    #     self.api.login()
-    # except Exception as e:
-    #     print("[Garmin Module] error trying to authenticate", e)
-    #     self.invalid = True
     lastTimeCall = 0
-
     while True:
         currTime = time.time()
         if currTime - lastTimeCall >= 600:
             try:
-                print("[Garmin Module] attempting to log in again. ", email, pw)
                 api_call = Garmin(email, pw)
                 api_call.login()
                 activity_queue.put(api_call.get_last_activity())
@@ -100,16 +85,6 @@ def garminLogin(activity_queue, sleep_queue, email, pw):
             except Exception as e:
                 print("[Garmin Module] error trying to authenticate", e)
                 pass
-
-
-# def garminLogin(self, email, pw):
-#     try:
-#         print("[Garmin Module] attempting to log in again. ", email, pw)
-#         self.api = Garmin(email, pw)
-#         self.api.login()
-#     except Exception as e:
-#         print("[Garmin Module] error trying to authenticate", e)
-#         self.invalid = True
 
 
 def get_attribute(data, attribute, default_value):
