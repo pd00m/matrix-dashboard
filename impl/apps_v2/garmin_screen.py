@@ -27,8 +27,8 @@ class GarminScreen:
         self.canvas_width = config.getint("System", "canvas_width", fallback=64)
         self.canvas_height = config.getint("System", "canvas_height", fallback=32)
 
-        self.email = config.getint("Garmin", "email")
-        self.pw = config.getint("Garmin", "password")
+        self.email = config.get("Garmin", "email")
+        self.pw = config.get("Garmin", "password")
 
         self.text_color = literal_eval(
             config.get("Garmin Screen", "text_color", fallback="(255,255,255)")
