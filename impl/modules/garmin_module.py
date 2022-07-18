@@ -94,8 +94,8 @@ def garminLogin(activity_queue, sleep_queue, email, pw):
                 print("[Garmin Module] attempting to log in again. ", email, pw)
                 api_call = Garmin(email, pw)
                 api_call.login()
-                activity_queue.put(api_call.api.get_last_activity())
-                sleep_queue.put(api_call.api.get_sleep_data(today))
+                activity_queue.put(api_call.get_last_activity())
+                sleep_queue.put(api_call.get_sleep_data(today))
                 lastTimeCall = currTime
             except Exception as e:
                 print("[Garmin Module] error trying to authenticate", e)
