@@ -5,7 +5,6 @@ from InputStatus import InputStatusEnum
 from ast import literal_eval
 import math
 
-
 medium_blue = (0, 77, 179)
 light_blue = (50, 145, 168)
 dark_blue = (10, 16, 74)
@@ -28,13 +27,15 @@ class GarminScreen:
         self.canvas_width = config.getint("System", "canvas_width", fallback=64)
         self.canvas_height = config.getint("System", "canvas_height", fallback=32)
 
+        self.email = config.get("Garmin", "email")
+        self.pw = config.get("Garmin", "password")
+
         self.text_color = literal_eval(
             config.get("Garmin Screen", "text_color", fallback="(255,255,255)")
         )
         self.control_mode = False
 
         self.bgs = {"road": Image.open("apps_v2/res/garmin/road.png").convert("RGB")}
-
         self.theme_list = [self.lastActivity, self.healthStats]
 
         self.currentIdx = 0
