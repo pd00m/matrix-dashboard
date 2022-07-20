@@ -189,7 +189,7 @@ def convertDuration(seconds, ignoreSeconds=False):
     seconds = seconds % 60
     duration_text = (
         (str(hours) + ":" if hours > 0 else "")
-        + str(minutes)
+        + str(padToTwoDigit(minutes))
         + ((":" + str(padToTwoDigit(seconds))) if ignoreSeconds is False else "")
     )
     return duration_text
