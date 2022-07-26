@@ -243,8 +243,10 @@ class MainScreen:
         frame = self.bgs["forest"].copy()
         draw = ImageDraw.Draw(frame)
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
         ip_address = s.getsockname()[0]
-        date_x_off = 45
+        s.close()
+        date_x_off = 0
         date_y_off = 25
         draw.text(
             (date_x_off, date_y_off),
