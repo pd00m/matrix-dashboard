@@ -1,3 +1,5 @@
+from ipaddress import ip_address
+import socket
 from InputStatus import InputStatusEnum
 from PIL import Image, ImageFont, ImageDraw
 from datetime import datetime
@@ -239,6 +241,17 @@ class MainScreen:
 
     def generateForest(self):
         frame = self.bgs["forest"].copy()
+        draw = ImageDraw.Draw(frame)
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        ip_address = s.getsockname()[0]
+        date_x_off = 45
+        date_y_off = 25
+        draw.text(
+            (date_x_off, date_y_off),
+            ip_address,
+            orange_tinted_white,
+            font=self.font,
+        )
         return frame
 
 
