@@ -33,7 +33,7 @@ def main():
     matrix = RGBMatrix(options=options)
     print(parentdir + "/rpi-rgb-led-matrix/bindings/python")
     frame = Image.new("RGB", (64, 32), washed_out_navy)
-    matrix.SetImage(frame)
+
     draw = ImageDraw.Draw(frame)
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect(("8.8.8.8", 80))
@@ -53,7 +53,7 @@ def main():
     )
     print("Ip address: ", ip_address)
     while True:
-
+        matrix.SetImage(frame)
         time.sleep(0.5)
 
 
