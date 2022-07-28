@@ -45,5 +45,5 @@ def main():
             orange_tinted_white,
             font=font,
         )
-
+        print("Ip address: ", ip_address)
         time.sleep(0.05)
