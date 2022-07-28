@@ -43,13 +43,14 @@ def main():
             ip_address = s.getsockname()[0]
             s.close()
             draw.text((0, 0), ip_address, white, font=font)
-            print("Ip address: ", ip_address)
+            print("Ip address (" + str(30 - counter) + "): ", ip_address)
         except Exception as e:
             print("Error trying to connect to socket", e)
             pass
         matrix.SetImage(frame)
         counter += 1
         time.sleep(1)
+    sys.exit(0)
 
 
 if __name__ == "__main__":
