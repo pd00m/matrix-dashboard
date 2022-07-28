@@ -32,19 +32,13 @@ def main():
     options.drop_privileges = False
     matrix = RGBMatrix(options=options)
     print(parentdir + "/rpi-rgb-led-matrix/bindings/python")
-    frame = Image.new("RGB", (64, 32), washed_out_navy)
+    frame = Image.new("RGB", (64, 32), (0, 0, 0))
 
     draw = ImageDraw.Draw(frame)
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect(("8.8.8.8", 80))
     ip_address = s.getsockname()[0]
     s.close()
-    draw.text(
-        (8, 0),
-        "Test",
-        white,
-        font=font,
-    )
     draw.text(
         (0, 0),
         ip_address,
