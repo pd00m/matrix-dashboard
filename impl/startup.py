@@ -50,7 +50,7 @@ def main():
         matrix.SetImage(frame)
         counter += 1
         time.sleep(1)
-    sys.exit(0)
+    return
 
 
 if __name__ == "__main__":
