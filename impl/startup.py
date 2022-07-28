@@ -36,14 +36,14 @@ def main():
 
     draw = ImageDraw.Draw(frame)
     counter = 0
-    while counter < 30:
+    while counter < 10:
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             s.connect(("8.8.8.8", 80))
             ip_address = s.getsockname()[0]
             s.close()
             draw.text((0, 0), ip_address, white, font=font)
-            print("Ip address (" + str(30 - counter) + "): ", ip_address)
+            print("Ip address (" + str(10 - counter) + "): ", ip_address)
         except Exception as e:
             print("Error trying to connect to socket", e)
             pass
