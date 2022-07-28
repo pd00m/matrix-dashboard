@@ -46,8 +46,9 @@ def main():
         font=font,
     )
     print("Ip address: ", ip_address)
-    matrix.SetImage(frame)
-    # time.sleep(0.5)
+    while True:
+        matrix.SetImage(frame)
+        time.sleep(0.5)
 
 
 if __name__ == "__main__":
