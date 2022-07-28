@@ -34,20 +34,21 @@ def main():
     print(parentdir + "/rpi-rgb-led-matrix/bindings/python")
     frame = Image.new("RGB", (64, 32), (0, 0, 0))
     matrix.SetImage(frame)
+    draw = ImageDraw.Draw(frame)
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(("8.8.8.8", 80))
+    ip_address = s.getsockname()[0]
+    s.close()
+    draw.text(
+        (0, 0),
+        ip_address,
+        orange_tinted_white,
+        font=font,
+    )
+    print("Ip address: ", ip_address)
     while True:
-        draw = ImageDraw.Draw(frame)
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(("8.8.8.8", 80))
-        ip_address = s.getsockname()[0]
-        s.close()
-        draw.text(
-            (0, 0),
-            ip_address,
-            orange_tinted_white,
-            font=font,
-        )
-        print("Ip address: ", ip_address)
-        time.sleep(0.05)
+
+        time.sleep(0.5)
 
 
 if __name__ == "__main__":
