@@ -48,3 +48,11 @@ def main():
         )
         print("Ip address: ", ip_address)
         time.sleep(0.05)
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("Interrupted with Ctrl-C")
+        sys.exit(0)
