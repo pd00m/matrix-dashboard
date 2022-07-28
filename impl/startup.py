@@ -35,8 +35,8 @@ def main():
     frame = Image.new("RGB", (64, 32), (0, 0, 0))
 
     draw = ImageDraw.Draw(frame)
-
-    while True:
+    counter = 0
+    while counter < 30:
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             s.connect(("8.8.8.8", 80))
@@ -48,6 +48,7 @@ def main():
             print("Error trying to connect to socket", e)
             pass
         matrix.SetImage(frame)
+        counter += 1
         time.sleep(1)
 
 
