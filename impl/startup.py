@@ -15,7 +15,7 @@ def main():
     )
     parentdir = os.path.dirname(currentdir)
     sys.path.append(parentdir + "/rpi-rgb-led-matrix/bindings/python")
-    font = ImageFont.truetype("home/pi/matrix-dashboard/impl/fonts/tiny.otf", 5)
+    font = ImageFont.truetype("/home/pi/matrix-dashboard/impl/fonts/tiny.otf", 5)
     from rgbmatrix import RGBMatrix, RGBMatrixOptions
 
     options = RGBMatrixOptions()
