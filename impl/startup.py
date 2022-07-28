@@ -5,7 +5,7 @@ from InputStatus import InputStatusEnum
 from PIL import Image, ImageFont, ImageDraw
 
 washed_out_navy = (109, 104, 117)
-orange_tinted_white = (248, 237, 235)
+white = (230, 255, 255)
 
 
 def main():
@@ -40,9 +40,15 @@ def main():
     ip_address = s.getsockname()[0]
     s.close()
     draw.text(
+        (8, 0),
+        "Test",
+        white,
+        font=font,
+    )
+    draw.text(
         (0, 0),
         ip_address,
-        orange_tinted_white,
+        white,
         font=font,
     )
     print("Ip address: ", ip_address)
