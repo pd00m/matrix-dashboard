@@ -9,6 +9,7 @@ orange_tinted_white = (248, 237, 235)
 
 
 def main():
+    print("Starting....")
     currentdir = os.path.dirname(
         os.path.abspath(inspect.getfile(inspect.currentframe()))
     )
