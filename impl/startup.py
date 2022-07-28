@@ -32,7 +32,7 @@ def main():
     options.drop_privileges = False
     matrix = RGBMatrix(options=options)
     print(parentdir + "/rpi-rgb-led-matrix/bindings/python")
-    frame = Image.new("RGBA", (64, 32), washed_out_navy)
+    frame = Image.new("RGB", (64, 32), washed_out_navy)
     matrix.SetImage(frame)
     while True:
         draw = ImageDraw.Draw(frame)
