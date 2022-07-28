@@ -30,19 +30,20 @@ def main():
     options.hardware_mapping = "regular"  # If you have an Adafruit HAT: 'adafruit-hat'
     options.drop_privileges = False
     matrix = RGBMatrix(options=options)
-    frame = Image.new("RGBA", (64, 32), washed_out_navy)
-    draw = ImageDraw.Draw(frame)
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.connect(("8.8.8.8", 80))
-    ip_address = s.getsockname()[0]
-    s.close()
-    date_x_off = 0
-    date_y_off = 25
-    draw.text(
-        (date_x_off, date_y_off),
-        ip_address,
-        orange_tinted_white,
-        font=font,
-    )
+    while True:
+        frame = Image.new("RGBA", (64, 32), washed_out_navy)
+        draw = ImageDraw.Draw(frame)
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        ip_address = s.getsockname()[0]
+        s.close()
+        date_x_off = 0
+        date_y_off = 25
+        draw.text(
+            (date_x_off, date_y_off),
+            ip_address,
+            orange_tinted_white,
+            font=font,
+        )
 
-    time.sleep(0.05)
+        time.sleep(0.05)
