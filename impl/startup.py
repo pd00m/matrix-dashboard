@@ -32,7 +32,7 @@ def main():
     options.drop_privileges = False
     matrix = RGBMatrix(options=options)
     print(parentdir + "/rpi-rgb-led-matrix/bindings/python")
-    frame = Image.new("RGB", (64, 32), washed_out_navy)
+    frame = Image.new("RGB", (64, 32), (0, 0, 0))
     matrix.SetImage(frame)
     while True:
         draw = ImageDraw.Draw(frame)
@@ -40,10 +40,8 @@ def main():
         s.connect(("8.8.8.8", 80))
         ip_address = s.getsockname()[0]
         s.close()
-        date_x_off = 0
-        date_y_off = 25
         draw.text(
-            (date_x_off, date_y_off),
+            (0, 0),
             ip_address,
             orange_tinted_white,
             font=font,
