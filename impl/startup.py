@@ -31,8 +31,10 @@ def main():
     options.hardware_mapping = "regular"  # If you have an Adafruit HAT: 'adafruit-hat'
     options.drop_privileges = False
     matrix = RGBMatrix(options=options)
+    print(parentdir + "/rpi-rgb-led-matrix/bindings/python")
+    frame = Image.new("RGBA", (64, 32), washed_out_navy)
+    matrix.SetImage(frame)
     while True:
-        frame = Image.new("RGBA", (64, 32), washed_out_navy)
         draw = ImageDraw.Draw(frame)
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.connect(("8.8.8.8", 80))
