@@ -35,15 +35,20 @@ def main():
     frame = Image.new("RGB", (64, 32), (0, 0, 0))
 
     draw = ImageDraw.Draw(frame)
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.connect(("8.8.8.8", 80))
-    ip_address = s.getsockname()[0]
-    s.close()
-    draw.text((0, 0), ip_address, white, font=font)
-    print("Ip address: ", ip_address)
+
     while True:
+        try:
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            s.connect(("8.8.8.8", 80))
+            ip_address = s.getsockname()[0]
+            s.close()
+            draw.text((0, 0), ip_address, white, font=font)
+            print("Ip address: ", ip_address)
+        except Exception as e:
+            print("Error trying to connect to socket", e)
+            pass
         matrix.SetImage(frame)
-        time.sleep(0.5)
+        time.sleep(1)
 
 
 if __name__ == "__main__":
