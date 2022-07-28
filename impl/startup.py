@@ -40,7 +40,7 @@ def main():
     s.connect(("8.8.8.8", 80))
     ip_address = s.getsockname()[0]
     s.close()
-    draw.text((0, 0), ip_address, white, font=font)
+    draw.text((0, 0), ip_address, white)
     print("Ip address: ", ip_address)
     while True:
         matrix.SetImage(frame)
