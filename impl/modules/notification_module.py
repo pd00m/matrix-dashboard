@@ -55,7 +55,6 @@ class NotificationModule:
 
 class Notification:
     def __init__(self, application, addToCount, noti_id, title, body, noti_time):
-        print("entering in the notification class")
         self.application = application
         self.addToCount = addToCount
         self.noti_id = noti_id
@@ -79,9 +78,7 @@ def on_message(_, message, noti_queue, app_white_list):
         try:
             if contents["type"] == "sms_changed" and len(contents["notifications"]) > 0:
                 print("SMS received!")
-                print(message)
                 data = contents["notifications"][0]
-                print(data)
                 noti_queue.put(
                     Notification(
                         "SMS",
