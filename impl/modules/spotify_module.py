@@ -34,6 +34,7 @@ class SpotifyModule:
                         redirect_uri,
                         scope,
                         open_browser=False,
+                        prompt=True,
                     )
 
                     print("Authenticated for spotipy", self.auth_manager)
