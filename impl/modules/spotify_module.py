@@ -1,5 +1,6 @@
 import spotipy
 import os
+import spotipy.util as util
 
 
 class SpotifyModule:
@@ -28,13 +29,10 @@ class SpotifyModule:
                     os.environ["SPOTIPY_REDIRECT_URI"] = redirect_uri
 
                     scope = "user-read-currently-playing user-read-playback-state user-modify-playback-state"
+
+                    util.prompt_for_user_token(scope=scope)
                     self.auth_manager = spotipy.SpotifyOAuth(
-                        client_id,
-                        client_secret,
-                        redirect_uri,
-                        scope,
-                        open_browser=False,
-                        prompt=True,
+                        client_id, client_secret, redirect_uri, scope
                     )
 
                     print("Authenticated for spotipy", self.auth_manager)
