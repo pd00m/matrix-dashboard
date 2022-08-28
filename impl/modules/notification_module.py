@@ -73,6 +73,7 @@ class Notification:
 
 def on_message(_, message, noti_queue, app_white_list):
     message = json.loads(message)
+    print(message)
     if message["type"] == "push":
         contents = message["push"]
         try:
