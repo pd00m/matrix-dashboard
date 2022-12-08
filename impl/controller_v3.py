@@ -15,9 +15,13 @@ from apps_v2 import (
     weather,
     life,
     spotify_player,
-    garmin_screen,
+    #    garmin_screen,
 )
-from modules import weather_module, notification_module, spotify_module, garmin_module
+from modules import (
+    weather_module,
+    notification_module,
+    spotify_module,
+)  # , garmin_module
 
 sw = 13
 enc_A = 5
@@ -91,8 +95,8 @@ def main():
     modules = {
         "weather": weather_module.WeatherModule(config),
         "notifications": notification_module.NotificationModule(config),
-        "spotify": spotify_module.SpotifyModule(config),
-        "garmin": garmin_module.GarminModule(config),
+        "spotify": spotify_module.SpotifyModule(config)  # ,
+        #     "garmin": garmin_module.GarminModule(config),
     }
     # Removing some of the modules to get the intial set up tested
     app_list = [
@@ -102,7 +106,7 @@ def main():
         #    subcount.SubcountScreen(config, modules, callbacks),
         #    life.GameOfLifeScreen(config, modules, callbacks),
         spotify_player.SpotifyScreen(config, modules, callbacks),
-        garmin_screen.GarminScreen(config, modules, callbacks),
+        #    garmin_screen.GarminScreen(config, modules, callbacks),
         gif_viewer.GifScreen(config, modules, callbacks),
     ]
 

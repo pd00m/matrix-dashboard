@@ -282,14 +282,14 @@ def generateNotiFramesAsync(
                 found = True
         if not found:
             color = (0, 0, 0)
-            if noti.application == "Discord":
-                color = discordColor
+            if noti.application == "Whatsapp":
+                color = whatsappColor
             elif noti.application == "SMS":
                 color = smsColor
-            elif noti.application == "Snapchat":
-                color = snapchatColor
-            elif noti.application == "Messenger":
-                color = messengerColor
+            elif noti.application == "Webex":
+                color = webexColor
+            elif noti.application == "Gmail":
+                color = gMailColor
 
             for _ in range(3):
                 queue.append(Image.new("RGB", (canvas_width, canvas_height), color))
