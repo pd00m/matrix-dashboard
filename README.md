@@ -25,6 +25,7 @@ network={
 (copy and paste the below until a requirements txt is made)
 sudo apt-get update && sudo apt-get install python3-dev python3-pillow -y
 
+```
 sudo apt-get install git
 git clone https://github.com/jh442/matrix-dashboard.git
 sudo apt-get install libopenjp2-7
@@ -39,6 +40,7 @@ sudo pip3 install spotipy
 sudo pip3 install garminconnect
 sudo pip3 install rgbmatrix
 sudo pip install -r requirements.txt
+```
 
 ## Create the config.ini file
 
