@@ -24,7 +24,7 @@ network={
 
 (copy and paste the below until a requirements txt is made)
 sudo apt-get update && sudo apt-get install python3-dev python3-pillow -y
-sudo apt install python3-pip
+
 sudo apt-get install git
 git clone https://github.com/jh442/matrix-dashboard.git
 sudo apt-get install libopenjp2-7
@@ -60,7 +60,26 @@ sudo apt install -y python3-scipy
 6.  Switch off on-board sound (`dtparam=audio=off` in `/boot/config.txt`)
 7.  reboot
 
-This might take a couple more steps to get the audio drivers disabled as turning off the config didn't work the first time
+## Turn off the audio warning
+
+There is a good chance you will get the following error
+
+```
+=== snd_bcm2835: found that the Pi sound module is loaded. ===
+Don't use the built-in sound of the Pi together with this lib; it is known to be
+incompatible and cause trouble and hangs (you can still use external USB sound adapters).
+```
+
+I found the best way to disable this was the following:
+
+```
+cd ../..
+cd /etc/modprobe.d
+sudo nano raspi-blacklist.conf
+blacklist snd_bcm2835
+```
+
+exit and then `sudo reboot`
 
 Once starting, the last step should be to navigate to the spotify section. It will ask for a URL. Click it, and then paste
 the entire URL in the SSH session. This should authenticate the app
