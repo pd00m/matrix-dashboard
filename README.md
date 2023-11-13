@@ -82,7 +82,7 @@ blacklist snd_bcm2835
 exit and then `sudo reboot`
 
 Once starting, the last step should be to navigate to the spotify section. It will ask for a URL. Click it, and then paste
-the entire URL in the SSH session. This should authenticate the app
+the entire URL from the web browser it opened in the SSH session terminal. This should authenticate the app
 
 On a headless unit with Spotipy, it was needed to leverage the following code
 
