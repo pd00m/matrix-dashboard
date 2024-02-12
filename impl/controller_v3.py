@@ -8,20 +8,21 @@ from PIL import Image
 import select
 
 from apps_v2 import (
-    main_screen,
-    notion_v2,
-    subcount,
+    #main_screen,
+    #notion_v2,
+    #subcount,
     gif_viewer,
-    weather,
+    #weather,
     life,
     spotify_player,
     #    garmin_screen,
 )
+
 from modules import (
     weather_module,
-    notification_module,
-    spotify_module,
-)  # , garmin_module
+    #notification_module,
+    spotify_module
+)   #garmin_module
 
 sw = 13
 enc_A = 5
@@ -44,22 +45,22 @@ def main():
 
     black_screen = Image.new("RGB", (canvas_width, canvas_height), (0, 0, 0))
 
-    encButton = Button(sw, pull_up=True)
+    #encButton = Button(sw, pull_up=True)
     inputStatusDict = {"value": InputStatusEnum.NOTHING}
-    encButton.when_pressed = lambda button: encButtonFunc(button, inputStatusDict)
+    # encButton.when_pressed = lambda button: encButtonFunc(button, inputStatusDict)
 
-    encoderQueue = queue.Queue()
-    encoder = RotaryEncoder(enc_A, enc_B)
-    encoder.when_rotated_clockwise = lambda enc: rotate_clockwise(enc, encoderQueue)
-    encoder.when_rotated_counter_clockwise = lambda enc: rotate_counter_clockwise(
-        enc, encoderQueue
-    )
+    #encoderQueue = queue.Queue()
+    #encoder = RotaryEncoder(enc_A, enc_B)
+    # encoder.when_rotated_clockwise = lambda enc: rotate_clockwise(enc, encoderQueue)
+    # encoder.when_rotated_counter_clockwise = lambda enc: rotate_counter_clockwise(
+    #     enc, encoderQueue
+    # )
     encoder_state = 0
 
-    tilt_switch = Button(tilt, pull_up=True)
+    #tilt_switch = Button(tilt, pull_up=True)
     isHorizontalDict = {"value": True}
-    tilt_switch.when_pressed = lambda button: tilt_callback(button, isHorizontalDict)
-    tilt_switch.when_released = lambda button: tilt_callback(button, isHorizontalDict)
+    # tilt_switch.when_pressed = lambda button: tilt_callback(button, isHorizontalDict)
+    # tilt_switch.when_released = lambda button: tilt_callback(button, isHorizontalDict)
 
     def toggle_display():
         nonlocal displayOn
@@ -94,18 +95,18 @@ def main():
 
     modules = {
         "weather": weather_module.WeatherModule(config),
-        "notifications": notification_module.NotificationModule(config),
-        "spotify": spotify_module.SpotifyModule(config)  # ,
+        #"notifications": notification_module.NotificationModule(config),
+        "spotify": spotify_module.SpotifyModule(config),
         #     "garmin": garmin_module.GarminModule(config),
     }
     # Removing some of the modules to get the intial set up tested
     app_list = [
-        main_screen.MainScreen(config, modules, callbacks),
+        #main_screen.MainScreen(config, modules, callbacks),
         #    notion_v2.NotionScreen(config, modules, callbacks),
-        weather.WeatherScreen(config, modules, callbacks),
+        #weather.WeatherScreen(config, modules, callbacks),
         #    subcount.SubcountScreen(config, modules, callbacks),
-        #    life.GameOfLifeScreen(config, modules, callbacks),
-        spotify_player.SpotifyScreen(config, modules, callbacks),
+        #life.GameOfLifeScreen(config, modules, callbacks),
+        #spotify_player.SpotifyScreen(config, modules, callbacks),
         #    garmin_screen.GarminScreen(config, modules, callbacks),
         gif_viewer.GifScreen(config, modules, callbacks),
     ]
@@ -123,47 +124,47 @@ def main():
     options.chain_length = 1
     options.parallel = 1
     options.brightness = brightness
-    options.pixel_mapper_config = "U-mapper;Rotate:180"
+    options.pixel_mapper_config = ""
     options.gpio_slowdown = 1
-    options.pwm_lsb_nanoseconds = 80
-    options.limit_refresh_rate_hz = 150
-    options.hardware_mapping = "regular"  # If you have an Adafruit HAT: 'adafruit-hat'
+    options.pwm_lsb_nanoseconds = 100
+    options.limit_refresh_rate_hz = 180
+    options.hardware_mapping = "adafruit-hat-pwm"  # If you have an Adafruit HAT: 'adafruit-hat'
     options.drop_privileges = False
     matrix = RGBMatrix(options=options)
 
     while True:
-        while not encoderQueue.empty():
-            encoder_state += encoderQueue.get()
-        if encoder_state > 1:
-            print("encoder increased")
-            inputStatusDict["value"] = InputStatusEnum.ENCODER_INCREASE
-            encoder_state = 0
-        elif encoder_state < -1:
-            print("encoder decreased")
-            inputStatusDict["value"] = InputStatusEnum.ENCODER_DECREASE
-            encoder_state = 0
+        # while not encoderQueue.empty():
+        #     encoder_state += encoderQueue.get()
+        # if encoder_state > 1:
+        #     print("encoder increased")
+        #     inputStatusDict["value"] = InputStatusEnum.ENCODER_INCREASE
+        #     encoder_state = 0
+        # elif encoder_state < -1:
+        #     print("encoder decreased")
+        #     inputStatusDict["value"] = InputStatusEnum.ENCODER_DECREASE
+        #     encoder_state = 0
 
         inputStatusSnapshot = copy.copy(inputStatusDict["value"])
         inputStatusDict["value"] = InputStatusEnum.NOTHING
 
         isHorizontalSnapshot = copy.copy(isHorizontalDict["value"])
 
-        while sys.stdin in select.select([sys.stdin], [], [], 0)[0]:
-            cmd = sys.stdin.readline()
-            if cmd:
-                print("detected: " + cmd)
-                if cmd == "SP\n":
-                    inputStatusSnapshot = InputStatusEnum.SINGLE_PRESS
-                elif cmd == "DP\n":
-                    inputStatusSnapshot = InputStatusEnum.DOUBLE_PRESS
-                elif cmd == "TP\n":
-                    inputStatusSnapshot = InputStatusEnum.TRIPLE_PRESS
-                elif cmd == "LP\n":
-                    inputStatusSnapshot = InputStatusEnum.LONG_PRESS
-                elif cmd == "EI\n":
-                    inputStatusSnapshot = InputStatusEnum.ENCODER_INCREASE
-                elif cmd == "ED\n":
-                    inputStatusSnapshot = InputStatusEnum.ENCODER_DECREASE
+        # while sys.stdin in select.select([sys.stdin], [], [], 0)[0]:
+        #     cmd = sys.stdin.readline()
+        #     if cmd:
+        #         print("detected: " + cmd)
+        #         if cmd == "SP\n":
+        #             inputStatusSnapshot = InputStatusEnum.SINGLE_PRESS
+        #         elif cmd == "DP\n":
+        #             inputStatusSnapshot = InputStatusEnum.DOUBLE_PRESS
+        #         elif cmd == "TP\n":
+        #             inputStatusSnapshot = InputStatusEnum.TRIPLE_PRESS
+        #         elif cmd == "LP\n":
+        #             inputStatusSnapshot = InputStatusEnum.LONG_PRESS
+        #         elif cmd == "EI\n":
+        #             inputStatusSnapshot = InputStatusEnum.ENCODER_INCREASE
+        #         elif cmd == "ED\n":
+        #             inputStatusSnapshot = InputStatusEnum.ENCODER_DECREASE
 
         frame = app_list[current_app_idx % len(app_list)].generate(
             isHorizontalSnapshot, inputStatusSnapshot
@@ -171,7 +172,7 @@ def main():
         if not displayOn:
             frame = black_screen
 
-        # matrix.brightness = 100
+        matrix.brightness = 90
         matrix.SetImage(frame)
         time.sleep(0.05)
 

@@ -1,4 +1,6 @@
 
 config.ini
-
-impl/__pycache__/
+impl/.cache
+**/__pycache__/
+impl/.cache
+*.pyc

@@ -79,7 +79,7 @@ class SpotifyScreen:
             draw = ImageDraw.Draw(frame)
 
             draw.line((38,15,58,15), fill=(100,100,100))
-            draw.line((38,15,38+round(((progress_ms / duration_ms) * 100) // 5),15), fill=(180,180,180))
+            draw.line((38,15,38+round(((progress_ms / duration_ms) * 100) // 5),15), fill=(90,255,90))
 
             title_len = self.font.getsize(self.current_title)[0]
             if title_len > 31:

@@ -138,19 +138,19 @@ class MainScreen:
                 draw.point((41, 6), fill=white)
 
         # notifications
-        noti_list = self.modules["notifications"].getNotificationList()
-        counts = countList(noti_list)
+        # noti_list = self.modules["notifications"].getNotificationList()
+        # counts = countList(noti_list)
 
-        if counts["SMS"] > 0:
-            draw.rectangle((37, 26, 38, 27), fill=smsColor)
-        if counts["Whatsapp"] > 0:
-            draw.rectangle((34, 26, 35, 27), fill=whatsappColor)
-        if counts["Gmail"] > 0:
-            draw.rectangle((34, 29, 35, 30), fill=gMailColor)
-        if counts["Webex"] > 0:
-            draw.rectangle((37, 29, 38, 30), fill=webexColor)
+        # if counts["SMS"] > 0:
+        #     draw.rectangle((37, 26, 38, 27), fill=smsColor)
+        # if counts["Whatsapp"] > 0:
+        #     draw.rectangle((34, 26, 35, 27), fill=whatsappColor)
+        # if counts["Gmail"] > 0:
+        #     draw.rectangle((34, 29, 35, 30), fill=gMailColor)
+        # if counts["Webex"] > 0:
+        #     draw.rectangle((37, 29, 38, 30), fill=webexColor)
 
-        self.old_noti_list = noti_list
+        # self.old_noti_list = noti_list
 
         return frame
 
