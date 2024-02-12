@@ -61,14 +61,14 @@ class NotionScreen:
             else:
                 for i in range(len(self.tasks[0:5])):
                     task_desc = self.tasks[i]["properties"]["Name"]["title"][0]["plain_text"].upper()
-                    task_desc_len = self.font.getsize(self.tasks[i]["properties"]["Name"]["title"][0]["plain_text"].upper())[0]
+                    task_desc_len = self.font.getbbox(self.tasks[i]["properties"]["Name"]["title"][0]["plain_text"].upper())[2]
 
                     if task_desc_len >= self.canvas_width - 3:
                         spacer = "     "
                         draw.text((3-self.animation_cnt[i], 6*i), task_desc + spacer + task_desc, self.text_color, font=self.font)
                         if not self.paused:
                             self.animation_cnt[i] += 1
-                        if self.animation_cnt[i] == self.font.getsize(self.tasks[i]["properties"]["Name"]["title"][0]["plain_text"].upper() + spacer)[0]:
+                        if self.animation_cnt[i] == self.font.getbbox(self.tasks[i]["properties"]["Name"]["title"][0]["plain_text"].upper() + spacer)[2]:
                             self.animation_cnt[i] = 0
                     else:
                         draw.text((3, 6*i), task_desc, self.text_color, font=self.font)
@@ -92,14 +92,14 @@ class NotionScreen:
             else:
                 for i in range(len(self.tasks[0:9])):
                     task_desc = self.tasks[i]["properties"]["Name"]["title"][0]["plain_text"].upper()
-                    task_desc_len = self.font.getsize(self.tasks[i]["properties"]["Name"]["title"][0]["plain_text"].upper())[0]
+                    task_desc_len = self.font.getbbox(self.tasks[i]["properties"]["Name"]["title"][0]["plain_text"].upper())[2]
 
                     if task_desc_len >= self.canvas_height - 3:
                         spacer = "     "
                         draw.text((3-self.animation_cnt[i], 6*i), task_desc + spacer + task_desc, self.text_color, font=self.font)
                         if not self.paused:
                             self.animation_cnt[i] += 1
-                        if self.animation_cnt[i] == self.font.getsize(self.tasks[i]["properties"]["Name"]["title"][0]["plain_text"].upper() + spacer)[0]:
+                        if self.animation_cnt[i] == self.font.getbbox(self.tasks[i]["properties"]["Name"]["title"][0]["plain_text"].upper() + spacer)[2]:
                             self.animation_cnt[i] = 0
                     else:
                         draw.text((3, 6*i), task_desc, self.text_color, font=self.font)

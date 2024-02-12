@@ -81,22 +81,22 @@ class SpotifyScreen:
             draw.line((38,15,58,15), fill=(100,100,100))
             draw.line((38,15,38+round(((progress_ms / duration_ms) * 100) // 5),15), fill=(90,255,90))
 
-            title_len = self.font.getsize(self.current_title)[0]
+            title_len = self.font.getbbox(self.current_title)[2]
             if title_len > 31:
                 spacer = "   "
                 draw.text((34-self.title_animation_cnt, 0), self.current_title + spacer + self.current_title, self.title_color, font = self.font)
                 self.title_animation_cnt += 1
-                if self.title_animation_cnt == self.font.getsize(self.current_title + spacer)[0]:
+                if self.title_animation_cnt == self.font.getbbox(self.current_title + spacer)[2]:
                     self.title_animation_cnt = 0
             else:
                 draw.text((34-self.title_animation_cnt, 0), self.current_title, self.title_color, font = self.font)
 
-            artist_len = self.font.getsize(self.current_artist)[0]
+            artist_len = self.font.getbbox(self.current_artist)[2]
             if artist_len > 31:
                 spacer = "     "
                 draw.text((34-self.artist_animation_cnt, 7), self.current_artist + spacer + self.current_artist, self.artist_color, font = self.font)
                 self.artist_animation_cnt += 1
-                if self.artist_animation_cnt == self.font.getsize(self.current_artist + spacer)[0]:
+                if self.artist_animation_cnt == self.font.getbbox(self.current_artist + spacer)[2]:
                     self.artist_animation_cnt = 0
             else:
                 draw.text((34-self.artist_animation_cnt, 7), self.current_artist, self.artist_color, font = self.font)

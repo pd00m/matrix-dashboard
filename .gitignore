@@ -4,3 +4,5 @@ impl/.cache
 **/__pycache__/
 impl/.cache
 *.pyc
+env/*
+.DS_Store

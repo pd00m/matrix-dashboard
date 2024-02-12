@@ -300,7 +300,8 @@ def generateNotiFramesAsync(
             noti_str = (
                 noti.application + " | Title: " + noti.title + " | Body: " + noti.body
             )
-            noti_len = font.getsize(noti_str)[0]
+
+            noti_len = font.getbbox(noti_str)[2]
 
             for i in range(noti_len + canvas_width):
                 noti_frame = Image.new("RGB", (canvas_width, canvas_height), color)

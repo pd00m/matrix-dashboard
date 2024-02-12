@@ -1,7 +1,6 @@
 import queue
-import sys, os, time, copy, inspect
+import sys, os, time, copy, inspect, argparse
 from InputStatus import InputStatusEnum
-from gpiozero import Button, RotaryEncoder
 import configparser
 from PIL import Image
 
@@ -31,6 +30,18 @@ tilt = 19
 
 
 def main():
+    parser = argparse.ArgumentParser(
+                    prog = 'matrix-dashbaord',
+                    description = 'yet another led matrix dashboard')
+
+    parser.add_argument('-e', '--emulated', action='store_true', help='Run in a matrix emulator')
+    args = parser.parse_args()
+
+    if args.emulated:
+        from RGBMatrixEmulator import RGBMatrix, RGBMatrixOptions
+    else:
+        from rgbmatrix import RGBMatrix, RGBMatrixOptions
+
     brightness = 100
     displayOn = True
     print("starting the application")
@@ -106,9 +117,9 @@ def main():
         #weather.WeatherScreen(config, modules, callbacks),
         #    subcount.SubcountScreen(config, modules, callbacks),
         #life.GameOfLifeScreen(config, modules, callbacks),
-        #spotify_player.SpotifyScreen(config, modules, callbacks),
+        spotify_player.SpotifyScreen(config, modules, callbacks),
         #    garmin_screen.GarminScreen(config, modules, callbacks),
-        gif_viewer.GifScreen(config, modules, callbacks),
+        #gif_viewer.GifScreen(config, modules, callbacks),
     ]
 
     currentdir = os.path.dirname(
@@ -116,7 +127,6 @@ def main():
     )
     parentdir = os.path.dirname(currentdir)
     sys.path.append(parentdir + "/rpi-rgb-led-matrix/bindings/python")
-    from rgbmatrix import RGBMatrix, RGBMatrixOptions
 
     options = RGBMatrixOptions()
     options.rows = 32
@@ -172,7 +182,6 @@ def main():
         if not displayOn:
             frame = black_screen
 
-        matrix.brightness = 90
         matrix.SetImage(frame)
         time.sleep(0.05)
 

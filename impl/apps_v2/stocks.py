@@ -43,7 +43,7 @@ def generateLineArray(text, font):
     img = Image.new("RGB", (100,500), (0,0,0))
     draw = ImageDraw.Draw(img)
     draw.text((0,0), text, (255,255,255), font=font)
-    img = img.crop(img.getbbox())
+    _, _, img = img.crop(img.getbbox())
     return np.array(img)[:,:,0]/255
 
 def placeText(frame, x, y, color, text_arr, isLeftReference):
