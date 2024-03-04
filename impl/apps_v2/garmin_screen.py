@@ -114,7 +114,7 @@ class GarminScreen:
         draw = ImageDraw.Draw(frame)
 
         garmin_module = self.modules["garmin"]
-        response = garmin_module.getSleedData()
+        response = garmin_module.getSleepData()
         if response is not None:
             (
                 unmeasurableSleep,

@@ -55,7 +55,7 @@ class GarminModule:
             self.last_activity["averageRunningCadenceInStepsPerMinute"],
         )
 
-    def getSleedData(self):
+    def getSleepData(self):
         if not self.sleep_queue.empty():
             self.sleep_data = self.sleep_queue.get()
             self.sleep_queue.queue.clear()
