@@ -6,3 +6,6 @@ impl/.cache
 *.pyc
 env/*
 .DS_Store
+.vscode/
+secrets.py
+settings.toml
